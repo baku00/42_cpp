@@ -1,0 +1,70 @@
+#include "Contact.hpp"
+
+Contact::Contact(
+	std::string	firstname,
+	std::string	name,
+	std::string	surname,
+	std::string	phone_number,
+	std::string	darksecret
+)
+{
+	this->firstname = firstname;
+	this->name = name;
+	this->surname = surname;
+	this->phone_number = phone_number;
+	this->darksecret = darksecret;
+}
+
+Contact::Contact()
+{
+	std::cout << "Create a new Contact" << std::endl;
+}
+
+Contact::~Contact()
+{
+	std::cout << "Destroy a Contact" << std::endl;
+}
+
+std::string	Contact::get_firstname()
+{
+	return this->firstname;
+}
+std::string	Contact::get_name()
+{
+	return this->name;
+}
+std::string	Contact::get_surname()
+{
+	return this->surname;
+}
+std::string	Contact::get_phone_number()
+{
+	return this->phone_number;
+}
+std::string	Contact::get_darksecret()
+{
+	return this->darksecret;
+}
+
+void	Contact::display()
+{
+	std::cout << "Firstname:\t" << this->firstname << std::endl;
+	std::cout << "Name:\t\t" << this->name << std::endl;
+	std::cout << "Surname:\t" << this->surname << std::endl;
+	std::cout << "Phone number:\t" << this->phone_number << std::endl;
+	std::cout << "Darksecret:\t" << this->darksecret << std::endl;
+}
+
+Contact	&Contact::operator=(const Contact &contact)
+{
+	std::cout << "Copy contact" << std::endl;
+	if (this != &contact)
+	{
+		this->firstname = contact.firstname;
+		this->name = contact.name;
+		this->surname = contact.surname;
+		this->phone_number = contact.phone_number;
+		this->darksecret = contact.darksecret;
+	}
+	return (*this);
+}
