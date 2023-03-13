@@ -1,12 +1,11 @@
-NAME = Zombie
+NAME = Fixed
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror
 
-PHONEBOOK = class/PhoneBook/PhoneBook.cpp
-CONTACT = class/Contact/Contact.cpp
+FIXED = class/Fixed/Fixed.cpp
 
-FILES = main.cpp $(PHONEBOOK) $(CONTACT)
+FILES = main.cpp $(FIXED)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp

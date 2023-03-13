@@ -12,7 +12,7 @@ std::string	ask_command()
 
 void	display_help()
 {
-	for (size_t i = 0; i < 100; i++)
+	for (size_t i = 0; i < 3; i++)
 		std::cout << std::endl;
 	
 	std::cout << "Liste des commandes disponibles" << std::endl;

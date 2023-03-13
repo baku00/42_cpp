@@ -27,19 +27,17 @@ std::string	PhoneBook::ask(std::string field)
 
 void	PhoneBook::create_test()
 {
-	char		buffer[10];
-	std::string	index;
+	std::string index = " ";
+
 	for (int i = 0; i < 8; i++)
 	{
-		std::sprintf(buffer, "%d", i + 1);
-		index = buffer;
+		index[0] = i + 48;
 		Contact *contact = new Contact(index, index, index, index, index);
 		*this->contacts[this->contact_index] = *contact;
 		delete contact;
 		this->number_of_contact += 1;
 		this->contact_index = this->number_of_contact % 8;
 	}
-	
 }
 
 void	PhoneBook::add_contact()
@@ -69,6 +67,7 @@ int		PhoneBook::ask_index(std::string field)
 
 	std::cout << field << std::flush;
 	std::cin >> value;
+	std::cout << value << std::endl;
 	return (value);
 }
 
@@ -150,7 +149,7 @@ void	PhoneBook::search_contact()
 		index = ask_index("Index: ");
 		while (!is_valid_index(index))
 		{
-			for (size_t i = 0; i < 100; i++)
+			for (size_t i = 0; i < 3; i++)
 				std::cout << std::endl;
 
 			std::cout << "L'index demandé est invalide, il doit être compris entre 0 et le nombre de contact actuel (" << get_limit() - 1 << ")" << std::endl;
@@ -161,7 +160,7 @@ void	PhoneBook::search_contact()
 			this->display_all_contacts();
 			index = ask_index("Index: ");
 		}
-		for (size_t i = 0; i < 100; i++)
+		for (size_t i = 0; i < 3; i++)
 				std::cout << std::endl;
 		std::cout << "Voici les informations du contact numéro " << index << std::endl;
 		this->contacts[index]->display();
