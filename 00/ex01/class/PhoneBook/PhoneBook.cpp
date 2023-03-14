@@ -65,8 +65,11 @@ int		PhoneBook::ask_index(std::string field)
 {
 	int	value;
 
-	while (!std::cin.good())
+	std::cout << field << std::flush;
+	std::cin >> value;
+	while (std::cin.fail())
 	{
+		std::cin.clear();
 		std::cout << field << std::flush;
 		std::cin >> value;
 	}
