@@ -15,7 +15,6 @@ class PhoneBook {
 		~PhoneBook();
 
 		std::string	ask(std::string field);
-		int			ask_index(std::string field);
 		std::string	format_for_column(std::string value);
 		void		display_all_contacts();
 		int			get_limit();

@@ -61,21 +61,6 @@ void	PhoneBook::add_contact()
 	this->contact_index = this->number_of_contact % 8;
 }
 
-int		PhoneBook::ask_index(std::string field)
-{
-	int	value;
-
-	std::cout << field << std::flush;
-	std::cin >> value;
-	std::cout << value << std::endl;
-	/*while (std::cin.fail())
-	{
-		std::cout << field << std::flush;
-		std::cin >> value;
-	}*/
-	return (value);
-}
-
 bool	PhoneBook::is_valid_index(int index)
 {
 	return (index >= 0 && index <= 8 && index < this->number_of_contact);
@@ -151,7 +136,7 @@ void	PhoneBook::search_contact()
 	else
 	{
 		this->display_all_contacts();
-		index = ask_index("Index: ");
+		index = std::atoi(ask("Index: ").c_str());
 		while (!is_valid_index(index))
 		{
 			for (size_t i = 0; i < 3; i++)
