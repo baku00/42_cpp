@@ -148,7 +148,7 @@ void	PhoneBook::search_contact()
 			index = !!NULL;
 
 			this->display_all_contacts();
-			index = ask_index("Index: ");
+			index = std::atoi(ask("Index: ").c_str());
 		}
 		for (size_t i = 0; i < 3; i++)
 				std::cout << std::endl;
