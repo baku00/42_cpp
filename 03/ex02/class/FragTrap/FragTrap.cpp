@@ -15,29 +15,6 @@ FragTrap::~FragTrap()
 }
 
 /**
- * Getters of properties
-*/
-std::string	FragTrap::getName()
-{
-	return this->name;
-}
-
-int		FragTrap::getAttackDamage()
-{
-	return this->attack_damage;
-}
-
-int		FragTrap::getEnergyPoint()
-{
-	return this->energy_point;
-}
-
-int		FragTrap::getHitPoint()
-{
-	return this->hit_point;
-}
-
-/**
  * Methods
 */
 void	FragTrap::attack(const std::string &target)
@@ -70,34 +47,9 @@ void	FragTrap::beRepaired(unsigned int amount)
 	this->removeEnergyPoint();
 }
 
-void	FragTrap::display()
-{
-	std::cout << "Name:\t\t" 		<< this->getName() << std::endl;
-	std::cout << "Hit points:\t" 	<< this->getHitPoint() << std::endl;
-	std::cout << "Energy points:\t" << this->getEnergyPoint() << std::endl;
-}
-
 void	FragTrap::highFivesGuys()
 {
 	const std::string name = this->getName();
 
-	std::cout << name << " ask a high fives !" << std::endl;
-}
-
-/**
- * Manage energy point
-*/
-bool	FragTrap::hasEnoughtEnergyPoint()
-{
-	return this->energy_point >= 1;
-}
-
-void	FragTrap::notEnoughtEnergyPoint()
-{
-	std::cout << this->getName() << " ne possède pas assez de point d'énergie pour effectué une action" << std::endl;
-}
-
-void	FragTrap::removeEnergyPoint()
-{
-	this->energy_point -= 1;
+	std::cout << name << " want a high fives" << std::endl;
 }

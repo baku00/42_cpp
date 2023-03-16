@@ -1,20 +1,9 @@
 #include "class/Contact/Contact.hpp"
 #include "class/PhoneBook/PhoneBook.hpp"
-
-std::string	ask_command()
-{
-	std::string	command;
-
-	std::cout << "Command: " << std::flush;
-	std::cin >> command;
-	return (command);
-}
+#include "class/Utils/Utils.hpp"
 
 void	display_help()
 {
-	for (size_t i = 0; i < 3; i++)
-		std::cout << std::endl;
-	
 	std::cout << "Liste des commandes disponibles" << std::endl;
 	std::cout << "===============================" << std::endl;
 	std::cout << "add:\tAjouter un contact" << std::endl;
@@ -28,7 +17,7 @@ int main()
 	PhoneBook	*phonebook	= new PhoneBook();
 	std::string	command		= "";
 
-	display_help();
+	Utils::clear_screen();
 	while (command != "exit")
 	{
 		if (command == "add")
@@ -39,7 +28,8 @@ int main()
 			phonebook->create_test();
 		else
 			display_help();
-		command = ask_command();
+		command = Utils::readline("Command: ");
+		Utils::clear_screen();
 	}
 	delete phonebook;
 	return (0);

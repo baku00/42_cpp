@@ -5,8 +5,9 @@ CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 PHONEBOOK = class/PhoneBook/PhoneBook.cpp
 CONTACT = class/Contact/Contact.cpp
+UTILS = class/Utils/Utils.cpp
 
-FILES = main.cpp $(PHONEBOOK) $(CONTACT)
+FILES = main.cpp $(PHONEBOOK) $(CONTACT) $(UTILS)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp

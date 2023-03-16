@@ -1,5 +1,23 @@
 #include "PhoneBook.hpp"
 
+/**
+ * - Constructors
+ * - Destructors
+ * - Getters
+ * - Displays
+ * - Inputs
+ * - Validators
+ * - Utilities
+ * - Methods
+ * - Generators
+*/
+
+/**
+ * ====================
+ * |   Constructors   |
+ * ====================
+*/
+
 PhoneBook::PhoneBook()
 {
 	this->number_of_contact = 0;
@@ -9,6 +27,12 @@ PhoneBook::PhoneBook()
 		this->contacts[i] = new Contact();
 }
 
+/**
+ * ====================
+ * |    Destructors   |
+ * ====================
+*/
+
 PhoneBook::~PhoneBook()
 {
 	for (size_t i = 0; i < 8; i++)
@@ -16,77 +40,42 @@ PhoneBook::~PhoneBook()
 	std::cout << "Destroy a PhoneBook" << std::endl;
 }
 
-std::string	PhoneBook::ask(std::string field)
-{
-	std::string	value;
+/**
+ * ====================
+ * |      Getters     |
+ * ====================
+*/
 
-	std::cout << field << std::flush;
-	std::cin >> value;
-	return (value);
+int	PhoneBook::get_index_from_string(std::string index)
+{
+	return (index[0] - 48);
 }
 
-void	PhoneBook::create_test()
+int PhoneBook::get_limit()
 {
-	std::string index = " ";
-
-	for (int i = 0; i < 8; i++)
-	{
-		index[0] = i + 48;
-		Contact *contact = new Contact(index, index, index, index, index);
-		*this->contacts[this->contact_index] = *contact;
-		delete contact;
-		this->number_of_contact += 1;
-		this->contact_index = this->number_of_contact % 8;
-	}
-}
-
-void	PhoneBook::add_contact()
-{
-	std::string firstname = ask("Firstname: ");
-	std::string name = ask("Name: ");
-	std::string surname = ask("Surname: ");
-	std::string phone_number = ask("Phonenumber: ");
-	std::string darksecret = ask("Darksecret: ");
-
-	Contact *contact = new Contact(
-		firstname,
-		name,
-		surname,
-		phone_number,
-		darksecret
-	);
-	*this->contacts[this->contact_index] = *contact;
-	delete contact;
-	this->number_of_contact += 1;
-	this->contact_index = this->number_of_contact % 8;
-}
-
-bool	PhoneBook::is_valid_index(int index)
-{
-	return (index >= 0 && index <= 8 && index < this->number_of_contact);
-}
-
-std::string	PhoneBook::format_for_column(std::string value)
-{
-	std::string result = value;
-	std::string	column = "          ";
-	if (result.length() > 10)
-		result = result.substr(0, 9).append(".");
-	else
-		result = column.substr(0, 10 - result.length()).append(result);
-	return result;
-}
-
-int	PhoneBook::get_limit()
-{
-	int	limit = this->number_of_contact;
+	int limit = this->number_of_contact;
 
 	if (this->number_of_contact >= 8)
 		limit = 8;
 	return (limit);
 }
 
-void	PhoneBook::display_all_contacts()
+
+/**
+ * ====================
+ * |     Displays     |
+ * ====================
+*/
+
+void	PhoneBook::display_index_error()
+{
+	std::cout << "L'index demandé est invalide. " << std::endl;
+	std::cout << "Il doit être compris entre 0 et le nombre de contact actuel" << std::flush;
+	std::cout << " (" << this->get_limit() - 1 << ")" << std::endl;
+	std::cout << std::endl;
+}
+
+void PhoneBook::display_all_contacts()
 {
 	std::cout << "#" << std::flush;
 	std::cout << "   " << std::flush;
@@ -112,47 +101,144 @@ void	PhoneBook::display_all_contacts()
 	}
 }
 
-void	PhoneBook::display_empty_list()
+void PhoneBook::display_empty_list()
 {
 	std::cout << "La liste de contact est vide, utilisez la commande 'add' pour en ajouter un nouveau" << std::endl;
 }
 
-bool	PhoneBook::valid_number_of_contact()
+void	PhoneBook::display_the_only_one_contact()
 {
-	return (this->number_of_contact > 1);
+	std::cout << "Vous n'avez qu'un seul contact" << std::endl;
+	this->contacts[0]->display();
 }
 
-void	PhoneBook::search_contact()
+
+/**
+ * ====================
+ * |     Inputs     |
+ * ====================
+*/
+
+std::string PhoneBook::ask(std::string field)
 {
-	int	index;
+	return (Utils::readline(field));
+}
+
+std::string PhoneBook::ask_contact_index()
+{
+	std::string index = this->ask("Index: ");
+
+	while (!this->is_valid_index(index))
+	{
+		Utils::clear_screen();
+
+		this->display_index_error();
+
+		this->display_all_contacts();
+		index = ask("Index: ");
+	}
+
+	return (index);
+}
+
+/**
+ * ====================
+ * |    Validators    |
+ * ====================
+*/
+
+bool PhoneBook::is_valid_index(std::string index)
+{
+	if (index.length() != 1)
+		return (false);
+	if (index[0] < '0' && index[0] > '9')
+		return (false);
+	if (index[0] - 48 >= this->number_of_contact)
+		return (false);
+	return (true);
+}
+
+
+/**
+ * ====================
+ * |     Utilities    |
+ * ====================
+*/
+
+std::string PhoneBook::format_for_column(std::string value)
+{
+	std::string result = value;
+	std::string column = "          ";
+	if (result.length() > 10)
+		result = result.substr(0, 9).append(".");
+	else
+		result = column.substr(0, 10 - result.length()).append(result);
+	return result;
+}
+
+/**
+ * ====================
+ * |      Methods     |
+ * ====================
+*/
+
+void PhoneBook::add_contact()
+{
+	std::string firstname = ask("Firstname: ");
+	std::string name = ask("Name: ");
+	std::string surname = ask("Surname: ");
+	std::string phone_number = ask("Phonenumber: ");
+	std::string darksecret = ask("Darksecret: ");
+
+	Contact *contact = new Contact(
+		firstname,
+		name,
+		surname,
+		phone_number,
+		darksecret);
+	*this->contacts[this->contact_index] = *contact;
+	delete contact;
+	this->number_of_contact += 1;
+	this->contact_index = this->number_of_contact % 8;
+}
+
+void PhoneBook::search_contact()
+{
+	std::string index = "";
 
 	if (this->number_of_contact == 0)
 		this->display_empty_list();
 	else if (this->number_of_contact == 1)
-	{
-		std::cout << "Vous n'avez qu'un seul contact" << std::endl;
-		this->contacts[0]->display();
-	}
+		this->display_the_only_one_contact();
 	else
 	{
 		this->display_all_contacts();
-		index = std::atoi(ask("Index: ").c_str());
-		while (!is_valid_index(index))
-		{
-			for (size_t i = 0; i < 3; i++)
-				std::cout << std::endl;
+		index = this->ask_contact_index();
 
-			std::cout << "L'index demandé est invalide, il doit être compris entre 0 et le nombre de contact actuel (" << get_limit() - 1 << ")" << std::endl;
-			std::cout << std::endl;
+		Utils::clear_screen();
 
-			index = !!NULL;
-
-			this->display_all_contacts();
-			index = std::atoi(ask("Index: ").c_str());
-		}
-		for (size_t i = 0; i < 3; i++)
-				std::cout << std::endl;
 		std::cout << "Voici les informations du contact numéro " << index << std::endl;
-		this->contacts[index]->display();
+		this->contacts[this->get_index_from_string(index)]->display();
+	}
+}
+
+/**
+ * ====================
+ * |    Generators    |
+ * ====================
+*/
+
+void PhoneBook::create_test()
+{
+	std::string index = " ";
+
+	for (int i = 0; i < 8; i++)
+	{
+		index[0] = i + 48;
+		Contact *contact = new Contact(index, index, index, index, index);
+		*this->contacts[this->contact_index] = *contact;
+		delete contact;
+		this->number_of_contact += 1;
+		this->contact_index = this->number_of_contact % 8;
 	}
 }

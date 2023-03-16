@@ -1,17 +1,9 @@
 #include "class/ClapTrap/ClapTrap.hpp"
 #include "class/ScavTrap/ScavTrap.hpp"
 
-int main()
+ClapTrap	*execute_claptrap()
 {
 	ClapTrap *claptrap	= new ClapTrap("ClapTrap");
-	std::cout << std::endl;
-	ScavTrap *scavtrap	= new ScavTrap("ScavTrap");
-
-/**
- * Programme begin
-*/
-	std::cout << std::endl;
-	std::cout << "Démarrage du programme" << std::endl;
 	std::cout << std::endl;
 
 	claptrap->display();
@@ -20,13 +12,7 @@ int main()
 	std::cout << std::endl;
 	std::cout << std::endl;
 
-/**
- * ====================
- * | TEST DE CLAPTRAP |
- * ====================
-*/
-
-/**
+	/**
  * First attack
 */
 	std::cout << "Exécution numéro 1" << std::endl;
@@ -92,14 +78,15 @@ int main()
 			std::cout << std::endl;
 	}
 
+	return (claptrap);
+}
 
-/**
- * ====================
- * | TEST DE SCAVTRAP |
- * ====================
-*/
+ScavTrap	*execute_scavtrap()
+{
+	ScavTrap *scavtrap	= new ScavTrap("ScavTrap");
 
 	scavtrap->display();
+
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -123,6 +110,9 @@ int main()
 
 	scavtrap->display();
 	std::cout << std::endl;
+
+	scavtrap->guardGate();
+	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -145,6 +135,9 @@ int main()
 
 	scavtrap->display();
 	std::cout << std::endl;
+
+	scavtrap->guardGate();
+	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -166,10 +159,29 @@ int main()
 
 		scavtrap->display();
 		std::cout << std::endl;
+
+		scavtrap->guardGate();
+		std::cout << std::endl;
 		std::cout << std::endl;
 		std::cout << std::endl;
 		std::cout << std::endl;
 	}
+
+	return (scavtrap);
+}
+
+int main()
+{
+	ClapTrap *claptrap;
+	ScavTrap *scavtrap;
+
+	std::cout << std::endl;
+	std::cout << "Démarrage du programme" << std::endl;
+	std::cout << std::endl;
+
+	claptrap	= execute_claptrap();
+	std::cout << std::endl;
+	scavtrap	= execute_scavtrap();
 
 	std::cout << std::endl;
 

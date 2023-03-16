@@ -15,29 +15,6 @@ ScavTrap::~ScavTrap()
 }
 
 /**
- * Getters of properties
-*/
-std::string	ScavTrap::getName()
-{
-	return this->name;
-}
-
-int		ScavTrap::getAttackDamage()
-{
-	return this->attack_damage;
-}
-
-int		ScavTrap::getEnergyPoint()
-{
-	return this->energy_point;
-}
-
-int		ScavTrap::getHitPoint()
-{
-	return this->hit_point;
-}
-
-/**
  * Methods
 */
 void	ScavTrap::attack(const std::string &target)
@@ -70,34 +47,9 @@ void	ScavTrap::beRepaired(unsigned int amount)
 	this->removeEnergyPoint();
 }
 
-void	ScavTrap::display()
-{
-	std::cout << "Name:\t\t" 		<< this->getName() << std::endl;
-	std::cout << "Hit points:\t" 	<< this->getHitPoint() << std::endl;
-	std::cout << "Energy points:\t" << this->getEnergyPoint() << std::endl;
-}
-
 void	ScavTrap::guardGate()
 {
 	const std::string name = this->getName();
 
 	std::cout << name << " gate keeper mode: enabled" << std::endl;
-}
-
-/**
- * Manage energy point
-*/
-bool	ScavTrap::hasEnoughtEnergyPoint()
-{
-	return this->energy_point >= 1;
-}
-
-void	ScavTrap::notEnoughtEnergyPoint()
-{
-	std::cout << this->getName() << " ne possède pas assez de point d'énergie pour effectué une action" << std::endl;
-}
-
-void	ScavTrap::removeEnergyPoint()
-{
-	this->energy_point -= 1;
 }

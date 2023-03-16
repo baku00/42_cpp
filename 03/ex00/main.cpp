@@ -22,7 +22,7 @@ int main()
 */
 	std::cout << "Exécution numéro 1" << std::endl;
 	std::cout << std::endl;
-	soldat76->takeDamage(10);
+	soldat76->takeDamage(1);
 
 	soldat76->attack("Doomfirst");
 	std::cout << std::endl;
@@ -30,7 +30,7 @@ int main()
 	soldat76->display();
 	std::cout << std::endl;
 
-	soldat76->beRepaired(15);
+	soldat76->beRepaired(1);
 	std::cout << std::endl;
 
 	soldat76->display();
@@ -44,7 +44,7 @@ int main()
 */
 	std::cout << "Exécution numéro 2" << std::endl;
 	std::cout << std::endl;
-	soldat76->takeDamage(150);
+	soldat76->takeDamage(1);
 
 	soldat76->attack("Doomfirst");
 	std::cout << std::endl;
@@ -52,7 +52,7 @@ int main()
 	soldat76->display();
 	std::cout << std::endl;
 
-	soldat76->beRepaired(20);
+	soldat76->beRepaired(1);
 	std::cout << std::endl;
 
 	soldat76->display();
@@ -65,7 +65,7 @@ int main()
 	{
 			std::cout << "Exécution numéro " << i + 3 << std::endl;
 			std::cout << std::endl;
-			soldat76->takeDamage(15);
+			soldat76->takeDamage(1);
 
 			soldat76->attack("Doomfirst");
 			std::cout << std::endl;
@@ -73,7 +73,7 @@ int main()
 			soldat76->display();
 			std::cout << std::endl;
 
-			soldat76->beRepaired(20);
+			soldat76->beRepaired(1);
 			std::cout << std::endl;
 
 			soldat76->display();

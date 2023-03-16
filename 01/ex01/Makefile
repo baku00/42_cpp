@@ -1,7 +1,7 @@
 NAME = Zombie
 
 CC = c++ -std=c++98
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 ZOMBIE = class/Zombie/Zombie.cpp
 ZOMBIE_HORDE = src/zombieHorde.cpp

@@ -6,9 +6,9 @@
 
 int main()
 {
-	WrongAnimal* meta = new WrongAnimal();
+	Animal* meta = new Animal();
 	Animal* dog = new Dog();
-	WrongAnimal* cat = new WrongCat();
+	Animal* cat = new Cat();
 	std::cout << dog->getType() << " " << std::endl;
 	std::cout << cat->getType() << " " << std::endl;
 	cat->makeSound();
