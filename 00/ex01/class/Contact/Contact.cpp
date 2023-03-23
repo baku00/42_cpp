@@ -13,16 +13,17 @@ Contact::Contact(
 	this->surname = surname;
 	this->phone_number = phone_number;
 	this->darksecret = darksecret;
+	std::cout << "Alternative of constructor of Contact" << std::endl;
 }
 
 Contact::Contact()
 {
-	std::cout << "Create a new Contact" << std::endl;
+	std::cout << "Constructor of Contact" << std::endl;
 }
 
 Contact::~Contact()
 {
-	std::cout << "Destroy a Contact" << std::endl;
+	std::cout << "Destructor of Contact" << std::endl;
 }
 
 std::string	Contact::get_firstname()
@@ -55,16 +56,17 @@ void	Contact::display()
 	std::cout << "Darksecret:\t" << this->darksecret << std::endl;
 }
 
-Contact	&Contact::operator=(const Contact &contact)
+void	Contact::replace(
+	std::string	firstname,
+	std::string	name,
+	std::string	surname,
+	std::string	phone_number,
+	std::string	darksecret
+)
 {
-	std::cout << "Copy contact" << std::endl;
-	if (this != &contact)
-	{
-		this->firstname = contact.firstname;
-		this->name = contact.name;
-		this->surname = contact.surname;
-		this->phone_number = contact.phone_number;
-		this->darksecret = contact.darksecret;
-	}
-	return (*this);
+	this->firstname = firstname;
+	this->name = name;
+	this->surname = surname;
+	this->phone_number = phone_number;
+	this->darksecret = darksecret;
 }

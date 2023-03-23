@@ -9,7 +9,7 @@ class PhoneBook {
 	private:
 		int		number_of_contact;
 		int		contact_index;
-		Contact	*contacts[8];
+		Contact	contacts[8];
 
 		// Getters
 		int			get_limit();

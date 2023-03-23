@@ -23,8 +23,6 @@ PhoneBook::PhoneBook()
 	this->number_of_contact = 0;
 	this->contact_index = this->number_of_contact % 8;
 	std::cout << "Create a new PhoneBook" << std::endl;
-	for (size_t i = 0; i < 8; i++)
-		this->contacts[i] = new Contact();
 }
 
 /**
@@ -35,8 +33,6 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook()
 {
-	for (size_t i = 0; i < 8; i++)
-		delete this->contacts[i];
 	std::cout << "Destroy a PhoneBook" << std::endl;
 }
 
@@ -92,11 +88,11 @@ void PhoneBook::display_all_contacts()
 	{
 		std::cout << i << std::flush;
 		std::cout << " | " << std::flush;
-		std::cout << format_for_column(this->contacts[i]->get_firstname()) << std::flush;
+		std::cout << format_for_column(contacts[i].get_firstname()) << std::flush;
 		std::cout << " | " << std::flush;
-		std::cout << format_for_column(this->contacts[i]->get_name()) << std::flush;
+		std::cout << format_for_column(contacts[i].get_name()) << std::flush;
 		std::cout << " | " << std::flush;
-		std::cout << format_for_column(this->contacts[i]->get_surname()) << std::flush;
+		std::cout << format_for_column(contacts[i].get_surname()) << std::flush;
 		std::cout << std::endl;
 	}
 }
@@ -109,7 +105,7 @@ void PhoneBook::display_empty_list()
 void	PhoneBook::display_the_only_one_contact()
 {
 	std::cout << "Vous n'avez qu'un seul contact" << std::endl;
-	this->contacts[0]->display();
+	contacts[0].display();
 }
 
 
@@ -190,14 +186,7 @@ void PhoneBook::add_contact()
 	std::string phone_number = ask("Phonenumber: ");
 	std::string darksecret = ask("Darksecret: ");
 
-	Contact *contact = new Contact(
-		firstname,
-		name,
-		surname,
-		phone_number,
-		darksecret);
-	*this->contacts[this->contact_index] = *contact;
-	delete contact;
+	contacts[this->contact_index].replace(firstname, name, surname, phone_number, darksecret);
 	this->number_of_contact += 1;
 	this->contact_index = this->number_of_contact % 8;
 }
@@ -218,7 +207,7 @@ void PhoneBook::search_contact()
 		Utils::clear_screen();
 
 		std::cout << "Voici les informations du contact numéro " << index << std::endl;
-		this->contacts[this->get_index_from_string(index)]->display();
+		contacts[this->get_index_from_string(index)].display();
 	}
 }
 
@@ -235,9 +224,13 @@ void PhoneBook::create_test()
 	for (int i = 0; i < 8; i++)
 	{
 		index[0] = i + 48;
-		Contact *contact = new Contact(index, index, index, index, index);
-		*this->contacts[this->contact_index] = *contact;
-		delete contact;
+		contacts[this->contact_index].replace(
+			index,
+			index,
+			index,
+			index,
+			index
+		);
 		this->number_of_contact += 1;
 		this->contact_index = this->number_of_contact % 8;
 	}

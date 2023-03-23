@@ -8,11 +8,14 @@ void	Utils::clear_screen()
 
 std::string	Utils::readline(std::string display)
 {
-	std::string value;
+	std::string value = "";
 
-	std::cout << display << std::flush;
-	std::getline(std::cin, value);
-	if (std::cin.eof() || std::cin.bad() || std::cin.fail())
-		std::exit(1);
+	while (value.empty())
+	{
+		std::cout << display << std::flush;
+		std::getline(std::cin, value);
+		if (std::cin.eof() || std::cin.bad() || std::cin.fail())
+			std::exit(1);
+	}
 	return (value);
 }

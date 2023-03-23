@@ -27,7 +27,13 @@ class Contact {
 		std::string	get_surname();
 		std::string	get_phone_number();
 		std::string	get_darksecret();
+		void		replace(
+			std::string	firstname,
+			std::string	name,
+			std::string	surname,
+			std::string	phone_number,
+			std::string	darksecret
+		);
 		void	display();
-		Contact	&operator=(const Contact &contact);
 };
 #endif
