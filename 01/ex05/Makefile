@@ -1,9 +1,10 @@
-NAME = Brain
+NAME = Harl
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror
 
-FILES = main.cpp
+HARL = class/Harl/Harl.cpp
+FILES = main.cpp $(HARL)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp

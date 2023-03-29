@@ -1,4 +1,4 @@
-NAME = Brain
+NAME = Sed
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror

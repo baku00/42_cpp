@@ -6,10 +6,10 @@ void	display_help()
 {
 	std::cout << "Liste des commandes disponibles" << std::endl;
 	std::cout << "===============================" << std::endl;
-	std::cout << "add:\tAjouter un contact" << std::endl;
-	std::cout << "search:\tChercher un contact" << std::endl;
-	std::cout << "test:\tCréer 8 contacts de test" << std::endl;
-	std::cout << "exit:\tQuitter le répértoire" << std::endl;
+	std::cout << "ADD:\tAjouter un contact" << std::endl;
+	std::cout << "SEARCH:\tChercher un contact" << std::endl;
+	std::cout << "TEST:\tCréer 8 contacts de test" << std::endl;
+	std::cout << "EXIT:\tQuitter le répértoire" << std::endl;
 }
 
 int main()
@@ -18,13 +18,13 @@ int main()
 	std::string	command		= "";
 
 	Utils::clear_screen();
-	while (command != "exit")
+	while (command != "EXIT")
 	{
-		if (command == "add")
+		if (command == "ADD")
 			phonebook->add_contact();
-		else if (command == "search")
+		else if (command == "SEARCH")
 			phonebook->search_contact();
-		else if (command == "test")
+		else if (command == "TEST")
 			phonebook->create_test();
 		else
 			display_help();
