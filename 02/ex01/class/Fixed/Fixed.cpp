@@ -51,21 +51,3 @@ float Fixed::toFloat() const {
 int Fixed::toInt() const {
 	return (value >> bits);
 }
-
-static	Fixed	min(Fixed &n1, Fixed &n2) {
-	if (n1 < n2)
-		return (n1);
-	return (n2);
-}
-
-static	Fixed	min(const Fixed &n1, const Fixed &n2) {
-
-}
-
-static	Fixed	max(Fixed &n1, Fixed &n2) {
-
-}
-
-static	Fixed	max(const Fixed &n1, const Fixed &n2) {
-
-}

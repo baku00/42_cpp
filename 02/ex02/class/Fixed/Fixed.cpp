@@ -51,3 +51,4 @@ float Fixed::toFloat() const {
 int Fixed::toInt() const {
 	return (value >> bits);
 }
+

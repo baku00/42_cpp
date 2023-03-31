@@ -14,23 +14,22 @@ void	display_help()
 
 int main()
 {
-	PhoneBook	*phonebook	= new PhoneBook();
+	PhoneBook	phonebook;
 	std::string	command		= "";
 
 	Utils::clear_screen();
 	while (command != "EXIT")
 	{
 		if (command == "ADD")
-			phonebook->add_contact();
+			phonebook.add_contact();
 		else if (command == "SEARCH")
-			phonebook->search_contact();
+			phonebook.search_contact();
 		else if (command == "TEST")
-			phonebook->create_test();
+			phonebook.create_test();
 		else
 			display_help();
 		command = Utils::readline("Command: ");
 		Utils::clear_screen();
 	}
-	delete phonebook;
 	return (0);
 }
