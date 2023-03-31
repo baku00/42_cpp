@@ -147,7 +147,8 @@ bool PhoneBook::is_valid_index(std::string index)
 {
 	if (index.length() != 1)
 		return (false);
-	if (index[0] < '0' && index[0] > '9')
+	std::cout << "INDEX: " << ((int) index[0]) << std::endl;
+	if (index[0] < '0' || index[0] > '9')
 		return (false);
 	if (index[0] - 48 >= this->number_of_contact)
 		return (false);
@@ -225,11 +226,11 @@ void PhoneBook::create_test()
 	{
 		index[0] = i + 48;
 		contacts[this->contact_index].replace(
-			index,
-			index,
-			index,
-			index,
-			index
+			index + ".abcdefghijklmnopqrstuvwxyz",
+			index + ".1234567",
+			index + ".12345678",
+			index + ".abcdefghijklmnopqrstuvwxyz",
+			index + ".abcdefghijklmnopqrstuvwxyz"
 		);
 		this->number_of_contact += 1;
 		this->contact_index = this->number_of_contact % 8;
