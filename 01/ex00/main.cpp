@@ -5,7 +5,6 @@ int main()
 {
 	Zombie *zombie = new Zombie("Carlos");
 	zombie->announce();
-	delete zombie;
 
 	std::cout << std::endl;
 	randomChump("Marco");
@@ -13,6 +12,8 @@ int main()
 
 	Zombie *new_zombie = newZombie("Chorlas");
 	new_zombie->announce();
+
 	delete new_zombie;
+	delete zombie;
 	return (0);
 }

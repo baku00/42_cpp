@@ -15,12 +15,5 @@ int main()
 	std::cout << "String PTR: " << *stringPTR << std::endl;
 	std::cout << "String REF: " << stringREF << std::endl;
 	std::cout << std::endl;
-
-	stringREF = "Hi";
-
-	std::cout << "Valeur: " << brain << std::endl;
-	std::cout << "String PTR: " << *stringPTR << std::endl;
-	std::cout << "String REF: " << stringREF << std::endl;
-
 	return (0);
 }

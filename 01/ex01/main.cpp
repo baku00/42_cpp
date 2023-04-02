@@ -7,12 +7,13 @@ int main()
 
 	Zombie *zombie = new Zombie("Carlos");
 	zombie->announce();
-	delete zombie;
 
 	std::cout << std::endl;
 	Zombie *horde = zombieHorde(HORDE_SIZE, "Horde Zombie");
 	for (int i = 0; i < HORDE_SIZE; i++)
 		horde[i].announce();
+
+	delete zombie;
 	delete[] horde;
 	return (0);
 }

@@ -147,7 +147,6 @@ bool PhoneBook::is_valid_index(std::string index)
 {
 	if (index.length() != 1)
 		return (false);
-	std::cout << "INDEX: " << ((int) index[0]) << std::endl;
 	if (index[0] < '0' || index[0] > '9')
 		return (false);
 	if (index[0] - 48 >= this->number_of_contact)

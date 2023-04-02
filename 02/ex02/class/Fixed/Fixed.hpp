@@ -6,7 +6,7 @@
 class Fixed {
 	private:
 		int					value;
-		static const int	bits = 16;
+		static const int	bits = 8;
 
 	public:
 		/**
@@ -50,6 +50,9 @@ class Fixed {
 		*/
 		Fixed			&operator++();
 		Fixed			&operator--();
+
+		Fixed			operator++(int);
+		Fixed			operator--(int);
 
 		/**
 		 * Bits manager
