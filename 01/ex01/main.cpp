@@ -3,7 +3,7 @@
 
 int main()
 {
-	const int HORDE_SIZE = 10;
+	const int HORDE_SIZE = 8;
 
 	Zombie *zombie = new Zombie("Carlos");
 	zombie->announce();

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 int	print_error(std::string error)
 {
@@ -58,9 +59,17 @@ void	write_content(std::ofstream &write, std::string content)
 	write << content;
 }
 
-int main(int argc, char **argv)
+std::string	ifstream_to_string(std::ifstream &read_file)
+{
+	std::stringstream buffer;
+	buffer << read_file.rdbuf();
+	return (buffer.str());
+}
+
+int	main(int argc, char **argv)
 {
 	std::string error = "";
+
 	if (argc != 4)
 		return (print_error(error.append("Usage: ./Seg <filename> <search> <replace>")));
 
@@ -72,7 +81,7 @@ int main(int argc, char **argv)
 	if (!read_file.is_open())
 		return (print_error(error.append("Une erreur est survenu lors de la lecture du fichier: '").append(argv[1]).append("'")));
 	std::ofstream write_file(filename.append(".replace").c_str());
-	std::string content = get_content(read_file);
+	std::string content = ifstream_to_string(read_file);
 	content = str_replace(content, search, replace);
 	write_content(write_file, content);
 	read_file.close();

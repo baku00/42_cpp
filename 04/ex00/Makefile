@@ -8,8 +8,9 @@ WRONG_CAT = wrong/WrongCat/WrongCat.cpp
 ANIMAL = class/Animal/Animal.cpp
 CAT = class/Cat/Cat.cpp
 DOG = class/Dog/Dog.cpp
+DAULPIN = class/Daulpin/Daulpin.cpp
 
-FILES = main.cpp $(ANIMAL) $(CAT) $(DOG) $(WRONG_ANIMAL) $(WRONG_CAT)
+FILES = main.cpp $(ANIMAL) $(CAT) $(DOG) $(DAULPIN) $(WRONG_ANIMAL) $(WRONG_CAT)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp

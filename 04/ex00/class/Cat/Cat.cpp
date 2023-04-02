@@ -12,3 +12,4 @@ void	Cat::makeSound()
 {
 	std::cout << "Miaou" << std::endl;
 }
+

@@ -28,6 +28,7 @@ void	ScavTrap::attack(const std::string &target)
 	std::cout << "ScavTrap " << name << std::flush;
 	std::cout << " attacks " << target << "," << std::flush;
 	std::cout << " causing " << attack_damage << " points of damage!" << std::endl;
+
 	this->removeEnergyPoint();
 	this->hit_point -= attack_damage;
 }

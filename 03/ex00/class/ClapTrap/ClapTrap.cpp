@@ -23,12 +23,12 @@ std::string	ClapTrap::getName()
 	return this->name;
 }
 
-int		ClapTrap::getAttackDamage()
+int	ClapTrap::getAttackDamage()
 {
 	return this->attack_damage;
 }
 
-int		ClapTrap::getEnergyPoint()
+int	ClapTrap::getEnergyPoint()
 {
 	return this->energy_point;
 }
