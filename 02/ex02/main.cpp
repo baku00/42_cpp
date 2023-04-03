@@ -3,7 +3,7 @@
 int	main()
 {
 	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Fixed const b( Fixed( 5.0f ) * Fixed( 2 ) );
 
 	std::cout << "Manage A" << std::endl;
 	std::cout << "\ta = " << a << std::endl;
@@ -23,6 +23,7 @@ int	main()
 	std::cout << std::endl;
 	std::cout << "Other Management" << std::endl;
 	std::cout << "\tMax( a, b ) = " << Fixed::max( a, b ) << std::endl;
+	std::cout << "\tFixed(20) / b = " << ( Fixed(20) / b ) << std::endl;
 	std::cout << std::endl;
 
 	// std::cout << "1:" << a << std::endl;

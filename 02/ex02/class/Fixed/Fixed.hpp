@@ -40,10 +40,10 @@ class Fixed {
 		/**
 		 * Operator arithmetic
 		*/
-		Fixed			&operator+(const Fixed &fixed);
-		Fixed			&operator-(const Fixed &fixed);
-		Fixed			&operator*(const Fixed &fixed);
-		Fixed			&operator/(const Fixed &fixed);
+		Fixed			operator+(const Fixed &fixed);
+		Fixed			operator-(const Fixed &fixed);
+		Fixed			operator*(const Fixed &fixed);
+		Fixed			operator/(const Fixed &fixed);
 
 		/**
 		 * Operator incrementation / decrementation

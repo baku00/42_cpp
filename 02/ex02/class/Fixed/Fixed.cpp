@@ -65,7 +65,7 @@ int Fixed::toInt() const {
  * Operator comparison
 */
 bool Fixed::operator<(const Fixed &fixed) const {
-	return (this->toFloat() < fixed.toFloat());
+	return (this->value < fixed.getRawBits());
 }
 
 bool Fixed::operator>(const Fixed &fixed) const {
@@ -92,23 +92,23 @@ bool Fixed::operator!=(const Fixed &fixed) const {
  * Operator arithmetic
 */
 
-Fixed &Fixed::operator+(const Fixed &fixed) {
-	this->value += fixed.toFloat();
+Fixed Fixed::operator+(const Fixed &fixed) {
+	this->value += fixed.toInt();
 	return (*this);
 }
 
-Fixed &Fixed::operator-(const Fixed &fixed) {
-	this->value -= fixed.toFloat();
+Fixed Fixed::operator-(const Fixed &fixed) {
+	this->value -= fixed.toInt();
 	return *this;
 }
 
-Fixed &Fixed::operator*(const Fixed &fixed) {
-	this->value *= fixed.toFloat();
+Fixed Fixed::operator*(const Fixed &fixed) {
+	this->value *= fixed.toInt();
 	return *this;
 }
 
-Fixed &Fixed::operator/(const Fixed &fixed) {
-	this->value /= fixed.toFloat();
+Fixed Fixed::operator/(const Fixed &fixed) {
+	this->value /= fixed.toInt();
 	return *this;
 }
 
