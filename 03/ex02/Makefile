@@ -1,13 +1,12 @@
-NAME = FragTrap
+NAME = ScavTrap
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 CLAPTRAP = class/ClapTrap/ClapTrap.cpp
 SCAVTRAP = class/ScavTrap/ScavTrap.cpp
-FRAGTRAP = class/FragTrap/FragTrap.cpp
 
-FILES = main.cpp $(CLAPTRAP) $(SCAVTRAP) $(FRAGTRAP)
+FILES = main.cpp $(CLAPTRAP) $(SCAVTRAP)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp

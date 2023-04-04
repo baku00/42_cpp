@@ -21,6 +21,7 @@ class ClapTrap {
 		~ClapTrap	();
 
 		std::string	getName();
+		void		setName(std::string name);
 		int			getHitPoint();
 		int			getEnergyPoint();
 		int			getAttackDamage();
@@ -32,6 +33,9 @@ class ClapTrap {
 		void		display();
 
 		bool		isDead();
+
+		bool		canMakeAction();
+		void		displayError();
 
 		ClapTrap	&operator=(const ClapTrap &clapTrap);
 };
