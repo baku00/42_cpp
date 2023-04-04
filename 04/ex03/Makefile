@@ -1,14 +1,11 @@
-NAME = Animal
+NAME = Character
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror
 
-ANIMAL = class/Animal/Animal.cpp
-CAT = class/Cat/Cat.cpp
-DOG = class/Dog/Dog.cpp
-BRAIN = class/Brain/Brain.cpp
+CHARACTER = class/Character/Character.cpp
 
-FILES = main.cpp $(ANIMAL) $(CAT) $(DOG) $(BRAIN)
+FILES = main.cpp $(CHARACTER)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp

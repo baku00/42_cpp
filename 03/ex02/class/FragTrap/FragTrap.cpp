@@ -6,12 +6,18 @@ FragTrap::FragTrap(
 	this->hit_point = 100;
 	this->energy_point = 100;
 	this->attack_damage = 30;
-	std::cout << "FragTrap créer" << std::endl;
+	std::cout << "Default constructor of FragTrap" << std::endl;
+}
+
+FragTrap::FragTrap(const FragTrap& fragtrap): ClapTrap(fragtrap)
+{
+	*this = fragtrap;
+	std::cout << "Copy of initial constructor of FragTrap" << std::endl;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout << "Déstruction de FragTrap" << std::endl;
+	std::cout << "Destroy of FragTrap" << std::endl;
 }
 
 /**
@@ -52,4 +58,16 @@ void	FragTrap::highFivesGuys()
 	const std::string name = this->getName();
 
 	std::cout << name << " want a high fives" << std::endl;
+}
+
+/**
+ * Operator
+*/
+FragTrap&	FragTrap::operator=(const FragTrap& fragtrap)
+{
+	this->name = fragtrap.name;
+	this->hit_point = fragtrap.hit_point;
+	this->energy_point = fragtrap.energy_point;
+	this->attack_damage = fragtrap.attack_damage;
+	return *this;
 }

@@ -1,14 +1,10 @@
-#ifndef ICHARACTER_HPP
-# define ICHARACTER_HPP
+#ifndef I_CHARACTER_HPP
+# define I_CHARACTER_HPP
 
 # include "../abstract/AMaterial.hpp"
 
 class ICharacter
 {
-	private:
-		/* data */
-		AMateria	materias[4];
-		std::string	name;
 	public:
 		virtual ~ICharacter() {}
 		virtual std::string const & getName() const = 0;

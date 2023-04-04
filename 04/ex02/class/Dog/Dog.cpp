@@ -3,6 +3,13 @@
 Dog::Dog(): Animal("Dog")
 {
 	this->brain = new Brain();
+	std::cout << "Création du chien: " << this->getType() << std::endl;
+}
+
+Dog::Dog(const Dog &dog): Animal(dog.type)
+{
+	this->brain = new Brain(*dog.brain);
+	std::cout << "Copy of constructor of dog: " << this->getType() << std::endl;
 }
 
 Dog::~Dog()
@@ -11,12 +18,21 @@ Dog::~Dog()
 	delete this->brain;
 }
 
-std::string	Dog::getType() const
+void	Dog::makeSound() const
+{
+	std::cout << "Wouf" << std::endl;
+}
+
+std::string Dog::getType() const
 {
 	return this->type;
 }
 
-void	Dog::makeSound() const
+Dog	&Dog::operator=(const Dog &dog)
 {
-	std::cout << "Wouf" << std::endl;
+	std::cout << "Assignation operator" << std::endl;
+	this->type = dog.type;
+	delete this->brain;
+	this->brain = new Brain(*dog.brain);
+	return *this;
 }

@@ -7,7 +7,22 @@ ClapTrap::ClapTrap(
 	this->hit_point = 10;
 	this->energy_point = 10;
 	this->attack_damage = 0;
-	std::cout << "ClavTrap créer" << std::endl;
+	std::cout << "Constructor with name" << std::endl;
+}
+
+ClapTrap::ClapTrap()
+{
+	this->name = "ClapTrap";
+	this->hit_point = 10;
+	this->energy_point = 10;
+	this->attack_damage = 0;
+	std::cout << "Default constructor" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &clapTrap)
+{
+	*this = clapTrap;
+	std::cout << "ClapTrap copier" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
@@ -53,16 +68,34 @@ void	ClapTrap::attack(const std::string &target)
 	std::cout << " attacks " << target << "," << std::flush;
 	std::cout << " causing " << attack_damage << " points of damage!" << std::endl;
 	this->removeEnergyPoint();
-	this->hit_point -= attack_damage;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	this->attack_damage = amount;
+	if (this->isDead())
+		std::cout << this->getName() << " est déjà mort" << std::endl;
+	else
+	{
+		std::cout << "ClapTrap take damage of " << amount << " hit point" << std::endl;
+		this->hit_point -= amount;
+		if (this->isDead())
+			std::cout << this->getName() << " est mort" << std::endl;
+	}
+}
+
+bool	ClapTrap::isDead()
+{
+	return this->getHitPoint() <= 0;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
+	if (this->isDead())
+	{
+		std::cout << this->getName() << " est mort, il ne peut pas être réparer" << std::endl;
+		return;
+	}
+
 	if (!ClapTrap::hasEnoughtEnergyPoint())
 		return this->notEnoughtEnergyPoint();
 
@@ -76,6 +109,7 @@ void	ClapTrap::display()
 	std::cout << "Name:\t\t" << this->getName() << std::endl;
 	std::cout << "Hit points:\t" << this->getHitPoint() << std::endl;
 	std::cout << "Energy points:\t" << this->getEnergyPoint() << std::endl;
+	std::cout << "Is Dead:\t" << this->isDead() << std::endl;
 }
 
 /**
@@ -94,4 +128,17 @@ void	ClapTrap::notEnoughtEnergyPoint()
 void	ClapTrap::removeEnergyPoint()
 {
 	this->energy_point -= 1;
+}
+
+/**
+ * Operator
+*/
+ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
+{
+	std::cout << "Copie d'un claptrap" << std::endl;
+	this->name = clapTrap.name;
+	this->hit_point = clapTrap.hit_point;
+	this->energy_point = clapTrap.energy_point;
+	this->attack_damage = clapTrap.attack_damage;
+	return *this;
 }

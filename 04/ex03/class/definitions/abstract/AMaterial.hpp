@@ -1,13 +1,11 @@
-#ifndef AMATERIAL_HPP
-# define AMATERIAL_HPP
+#ifndef A_MATERIAL_HPP
+# define A_MATERIAL_HPP
 
-#include <iostream>
 #include "../interface/ICharacter.hpp"
+#include <iostream>
 
 class AMateria
 {
-	protected:
-		
 	public:
 		AMateria(std::string const & type);
 		virtual ~AMateria();

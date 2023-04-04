@@ -1,7 +1,8 @@
 #ifndef ICE_HPP
 # define ICE_HPP
 
-# include "../definition/abstract/AMaterial.hpp"
+# include "../definitions/abstract/AMaterial.hpp"
+# include "../definitions/interface/ICharacter.hpp"
 
 class Ice : public AMateria
 {

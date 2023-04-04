@@ -12,21 +12,27 @@ class ClapTrap {
 		void		removeEnergyPoint();
 		bool		hasEnoughtEnergyPoint();
 		void		notEnoughtEnergyPoint();
+
+		ClapTrap	();
+
+	public:
+		ClapTrap	(std::string name);
+		ClapTrap	(const ClapTrap &clapTrap);
+		~ClapTrap	();
+
 		std::string	getName();
 		int			getHitPoint();
 		int			getEnergyPoint();
 		int			getAttackDamage();
 
-	public:
-		ClapTrap	(
-						std::string name
-					);
-
-		~ClapTrap();
-
 		void		attack(const std::string& target);
 		void		takeDamage(unsigned int amount);
 		void		beRepaired(unsigned int amount);
+
 		void		display();
+
+		bool		isDead();
+
+		ClapTrap	&operator=(const ClapTrap &clapTrap);
 };
 #endif

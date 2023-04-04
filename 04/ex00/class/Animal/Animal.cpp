@@ -3,10 +3,18 @@
 Animal::Animal(
 	std::string type
 ) {
+	std::cout << "Constructor with type" << std::endl;
 	this->type = type;
 }
 
-Animal::Animal() {}
+Animal::Animal(const Animal &animal) {
+	*this = animal;
+	std::cout << "Copy constructor" << std::endl;
+}
+
+Animal::Animal() {
+	std::cout << "Default constructor" << std::endl;
+}
 
 Animal::~Animal()
 {
@@ -21,4 +29,9 @@ std::string	Animal::getType()
 void	Animal::makeSound()
 {
 	std::cout << "Je veux bien emmettre un son mais je ne sais pas quel type d'animal je suis..." << std::endl;
+}
+
+Animal &Animal::operator=(const Animal &animal) {
+	this->type = animal.type;
+	return *this;
 }

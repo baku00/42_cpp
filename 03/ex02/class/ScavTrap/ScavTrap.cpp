@@ -9,6 +9,12 @@ ScavTrap::ScavTrap(
 	std::cout << "ScavTrap créer" << std::endl;
 }
 
+ScavTrap::ScavTrap(const ScavTrap &scavTrap): ClapTrap(scavTrap)
+{
+	*this = scavTrap;
+	std::cout << "ScavTrap copier" << std::endl;
+}
+
 ScavTrap::~ScavTrap()
 {
 	std::cout << "Déstruction de ScavTrap" << std::endl;
@@ -28,6 +34,7 @@ void	ScavTrap::attack(const std::string &target)
 	std::cout << "ScavTrap " << name << std::flush;
 	std::cout << " attacks " << target << "," << std::flush;
 	std::cout << " causing " << attack_damage << " points of damage!" << std::endl;
+
 	this->removeEnergyPoint();
 	this->hit_point -= attack_damage;
 }
@@ -52,4 +59,16 @@ void	ScavTrap::guardGate()
 	const std::string name = this->getName();
 
 	std::cout << name << " gate keeper mode: enabled" << std::endl;
+}
+
+/**
+ * Operators
+*/
+ScavTrap	&ScavTrap::operator=(const ScavTrap &scavTrap)
+{
+	this->name = scavTrap.name;
+	this->hit_point = scavTrap.hit_point;
+	this->energy_point = scavTrap.energy_point;
+	this->attack_damage = scavTrap.attack_damage;
+	return *this;
 }
