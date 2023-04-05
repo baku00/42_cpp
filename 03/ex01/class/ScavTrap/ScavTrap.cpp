@@ -87,6 +87,8 @@ void	ScavTrap::display()
 
 void	ScavTrap::guardGate()
 {
+	if (!this->canMakeAction())
+		return this->displayError("ScavTrap");
 	std::cout << "ScavTrap " << this->getName() << " have enterred in Gate keeper mode" << std::endl;
 }
 

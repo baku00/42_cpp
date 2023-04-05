@@ -87,6 +87,8 @@ void	FragTrap::display()
 
 void	FragTrap::highFivesGuys()
 {
+	if (!this->canMakeAction())
+		return this->displayError("FragTrap");
 	std::cout << "FragTrap ask a High five" << std::endl;
 }
 

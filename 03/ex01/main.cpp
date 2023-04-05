@@ -43,6 +43,8 @@ int main()
 	std::cout << std::endl;
 	std::cout << getSeparator("11") << "\n" << std::endl;
 	doomfist.beRepaired(25);
+	doomfist.guardGate();
+	doomfist.guardGate();
 	std::cout << "\n" << getSeparator("12") << std::endl;
 	std::cout << std::endl;
 	std::cout << getSeparator("13") << "\n" << std::endl;
@@ -67,6 +69,7 @@ int main()
 	std::cout << std::endl;
 	std::cout << getSeparator("23") << "\n" << std::endl;
 	doomfist.takeDamage(100);
+	doomfist.guardGate();
 	std::cout << "\n" << getSeparator("24") << std::endl;
 	return (0);
 }

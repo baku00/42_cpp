@@ -37,6 +37,8 @@ int main()
 	std::cout << std::endl;
 	std::cout << getSeparator("7") << "\n" << std::endl;
 	reaper.takeDamage(50);
+	reaper.highFivesGuys();
+	reaper.highFivesGuys();
 	std::cout << "\n" << getSeparator("8") << std::endl;
 	std::cout << std::endl;
 	std::cout << getSeparator("9") << "\n" << std::endl;
@@ -69,6 +71,7 @@ int main()
 	std::cout << std::endl;
 	std::cout << getSeparator("23") << "\n" << std::endl;
 	reaper.takeDamage(100);
+	reaper.highFivesGuys();
 	std::cout << "\n" << getSeparator("24") << std::endl;
 	return (0);
 }
