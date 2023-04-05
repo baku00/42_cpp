@@ -5,7 +5,7 @@
 */
 FragTrap::FragTrap(
 	std::string name
-) {
+): ClapTrap(name) {
 	this->name = name;
 	this->hit_point = 100;
 	this->energy_point = 100; // Set to 1 for test energy point managers
@@ -13,16 +13,16 @@ FragTrap::FragTrap(
 	std::cout << "Constructor of FragTrap with name" << std::endl;
 }
 
-FragTrap::FragTrap()
+FragTrap::FragTrap(): ClapTrap()
 {
 	this->name = "FragTrap";
 	this->hit_point = 10;
-	this->energy_point = 10;
-	this->attack_damage = 0;
+	this->energy_point = 100;
+	this->attack_damage = 30;
 	std::cout << "Default constructor of FragTrap" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &fragTrap)
+FragTrap::FragTrap(const FragTrap &fragTrap): ClapTrap(fragTrap)
 {
 	*this = fragTrap;
 	std::cout << "FragTrap copier" << std::endl;

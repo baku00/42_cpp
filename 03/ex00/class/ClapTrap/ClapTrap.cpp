@@ -10,7 +10,7 @@ ClapTrap::ClapTrap(
 	this->hit_point = 10;
 	this->energy_point = 10; // Set to 1 for test energy point managers
 	this->attack_damage = 0;
-	std::cout << "Constructor with name" << std::endl;
+	std::cout << "Constructor of ClapTrap with name" << std::endl;
 }
 
 ClapTrap::ClapTrap()
@@ -19,7 +19,7 @@ ClapTrap::ClapTrap()
 	this->hit_point = 10;
 	this->energy_point = 10;
 	this->attack_damage = 0;
-	std::cout << "Default constructor" << std::endl;
+	std::cout << "Default constructor of ClapTrap" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &clapTrap)

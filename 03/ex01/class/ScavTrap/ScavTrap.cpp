@@ -5,7 +5,7 @@
 */
 ScavTrap::ScavTrap(
 	std::string name
-) {
+): ClapTrap(name) {
 	this->name = name;
 	this->hit_point = 100;
 	this->energy_point = 50; // Set to 1 for test energy point managers
@@ -13,16 +13,16 @@ ScavTrap::ScavTrap(
 	std::cout << "Constructor of ScavTrap with name" << std::endl;
 }
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap(): ClapTrap()
 {
 	this->name = "ScavTrap";
-	this->hit_point = 10;
-	this->energy_point = 10;
-	this->attack_damage = 0;
+	this->hit_point = 100;
+	this->energy_point = 50;
+	this->attack_damage = 20;
 	std::cout << "Default constructor of ScavTrap" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &scavTrap)
+ScavTrap::ScavTrap(const ScavTrap &scavTrap): ClapTrap(scavTrap)
 {
 	*this = scavTrap;
 	std::cout << "ScavTrap copier" << std::endl;
