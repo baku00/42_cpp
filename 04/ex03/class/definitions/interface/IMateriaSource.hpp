@@ -1,7 +1,7 @@
 #ifndef IMATERIA_SOURCE_HPP
 # define IMATERIA_SOURCE_HPP
 
-# include "../abstract/AMaterial.hpp"
+# include "../abstracts/AMateria.hpp"
 
 class IMateriaSource
 {

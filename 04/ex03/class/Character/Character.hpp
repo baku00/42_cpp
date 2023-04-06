@@ -1,27 +1,26 @@
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
-# include <iostream>
-# include <string>
-// # include "../definitions/interface/ICharacter.hpp"
-# include "../definitions/abstract/AMaterial.hpp"
+# include "../definitions/interface/ICharacter.hpp"
+# include "../definitions/abstracts/AMateria.hpp"
 
-class Character //: public ICharacter
-{
+class Character: public ICharacter {
 	private:
-		std::string _name;
-		AMateria* _inventory[4];
+		static const int INVENTORY_SIZE = 4;
+		std::string name;
+		AMateria* inventory[INVENTORY_SIZE];
 		Character();
 
 	public:
 		Character(std::string const & name);
-		Character(Character const & src);
 		~Character();
-		Character & operator=(Character const & rhs);
+		Character(Character const & src);
+		Character & operator=(Character const & src);
+
 		std::string const & getName() const;
-		// void equip(AMateria* m);
+		void equip(AMateria* m);
 		void unequip(int idx);
-		// void use(int idx, ICharacter& target);
+		void use(int idx, ICharacter& target);
 };
 
 #endif

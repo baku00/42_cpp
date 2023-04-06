@@ -1,10 +1,10 @@
-#ifndef I_CHARACTER_HPP
-# define I_CHARACTER_HPP
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
 
-# include "../abstract/AMaterial.hpp"
+# include <iostream>
+class AMateria;
 
-class ICharacter
-{
+class ICharacter {
 	public:
 		virtual ~ICharacter() {}
 		virtual std::string const & getName() const = 0;
@@ -12,4 +12,5 @@ class ICharacter
 		virtual void unequip(int idx) = 0;
 		virtual void use(int idx, ICharacter& target) = 0;
 };
+
 #endif
