@@ -2,12 +2,13 @@
 
 Cat::Cat(): Animal("Cat")
 {
-	std::cout << "Default constructor" << std::endl;
+	std::cout << "Default constructor of Cat" << std::endl;
 }
 
-Cat::Cat(const Cat &cat): Animal(cat)
+Cat::Cat(const Cat &cat): Animal()
 {
-	std::cout << "Copy constructor" << std::endl;
+	*this = cat;
+	std::cout << "Copy constructor of Cat" << std::endl;
 }
 
 Cat::~Cat()
@@ -21,6 +22,7 @@ void	Cat::makeSound()
 }
 
 Cat &Cat::operator=(const Cat &cat) {
-	this->type = cat.type;
+	if (this != &cat)
+		this->type = cat.type;
 	return *this;
 }

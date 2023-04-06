@@ -3,17 +3,17 @@
 Animal::Animal(
 	std::string type
 ) {
-	std::cout << "Constructor with type" << std::endl;
+	std::cout << "Constructor of Animal with type" << std::endl;
 	this->type = type;
 }
 
 Animal::Animal(const Animal &animal) {
 	*this = animal;
-	std::cout << "Copy constructor" << std::endl;
+	std::cout << "Copy constructor of Animal" << std::endl;
 }
 
 Animal::Animal() {
-	std::cout << "Default constructor" << std::endl;
+	std::cout << "Default constructor of Animal" << std::endl;
 }
 
 Animal::~Animal()
@@ -32,6 +32,7 @@ void	Animal::makeSound()
 }
 
 Animal &Animal::operator=(const Animal &animal) {
-	this->type = animal.type;
+	if (this != &animal)
+		this->type = animal.type;
 	return *this;
 }

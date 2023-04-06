@@ -1,15 +1,15 @@
 #include "./Dog.hpp"
 
-Dog::Dog(): Animal("Dog")
+Dog::Dog(): Animal("Dog") 
 {
 	this->brain = new Brain();
-	std::cout << "Création du chien: " << this->getType() << std::endl;
+	std::cout << "Default constructor of Dog" << std::endl;
 }
 
-Dog::Dog(const Dog &dog): Animal(dog.type)
+Dog::Dog(const Dog &dog): Animal()
 {
-	this->brain = new Brain(*dog.brain);
-	std::cout << "Copy of constructor of dog: " << this->getType() << std::endl;
+	*this = dog;
+	std::cout << "Copy constructor of Dog" << std::endl;
 }
 
 Dog::~Dog()
@@ -23,16 +23,11 @@ void	Dog::makeSound() const
 	std::cout << "Wouf" << std::endl;
 }
 
-std::string Dog::getType() const
-{
-	return this->type;
-}
-
-Dog	&Dog::operator=(const Dog &dog)
-{
-	std::cout << "Assignation operator" << std::endl;
-	this->type = dog.type;
-	delete this->brain;
-	this->brain = new Brain(*dog.brain);
+Dog &Dog::operator=(const Dog &dog) {
+	if (this != &dog)
+	{
+		this->type = dog.type;
+		this->brain = dog.brain;
+	}
 	return *this;
 }

@@ -11,6 +11,8 @@ class Brain {
 		Brain(const Brain &brain);
 		~Brain();
 
+		void	printIdeas();
+
 		Brain &operator=(const Brain &brain);
 };
 

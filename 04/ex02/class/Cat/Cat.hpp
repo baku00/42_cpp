@@ -9,13 +9,11 @@ class Cat: public Animal {
 		Brain *brain;
 
 	public:
-		Cat		();
-		Cat		(const Cat &cat);
-		~Cat	();
+		Cat();
+		Cat(const Cat &cat);
+		~Cat();
 
-		std::string	getType()	const;
-		void		makeSound()	const;
-
+		void makeSound() const;
 
 		Cat &operator=(const Cat &cat);
 };

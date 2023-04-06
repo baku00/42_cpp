@@ -1,7 +1,7 @@
 NAME = Animal
 
 CC = c++ -std=c++98
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 WRONG_ANIMAL = wrong/WrongAnimal/WrongAnimal.cpp
 WRONG_CAT = wrong/WrongCat/WrongCat.cpp

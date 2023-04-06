@@ -9,9 +9,9 @@ class Cat: public Animal {
 		Brain *brain;
 
 	public:
-		Cat		();
-		Cat		(const Cat &cat);
-		~Cat	();
+		Cat();
+		Cat(const Cat &cat);
+		~Cat();
 
 		void makeSound();
 

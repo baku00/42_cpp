@@ -2,12 +2,13 @@
 
 Dog::Dog(): Animal("Dog") 
 {
-	std::cout << "Default constructor" << std::endl;
+	std::cout << "Default constructor of Dog" << std::endl;
 }
 
-Dog::Dog(const Dog &dog): Animal(dog)
+Dog::Dog(const Dog &dog): Animal()
 {
-	std::cout << "Copy constructor" << std::endl;
+	*this = dog;
+	std::cout << "Copy constructor of Dog" << std::endl;
 }
 
 Dog::~Dog()
@@ -21,6 +22,7 @@ void	Dog::makeSound()
 }
 
 Dog &Dog::operator=(const Dog &dog) {
-	this->type = dog.type;
+	if (this != &dog)
+		this->type = dog.type;
 	return *this;
 }
