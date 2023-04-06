@@ -17,26 +17,41 @@ MateriaSource::~MateriaSource()
 
 MateriaSource::MateriaSource(MateriaSource const & src)
 {
-	(void) src;
+	*this = src;
 }
 
 MateriaSource & MateriaSource::operator=(MateriaSource const & src)
 {
-	(void) src;
+	if (this != &src)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (this->_materia[i] != NULL)
+				delete this->_materia[i];
+			this->_materia[i] = src._materia[i]->clone();
+		}
+	}
 	return (*this);
 }
 
 void MateriaSource::learnMateria(AMateria* materia)
 {
-	(void) materia;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materia[i] == NULL)
+		{
+			this->_materia[i] = materia;
+			return ;
+		}
+	}
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	if (type == "ice")
-		return (new Ice());
-	else if (type == "cure")
-		return (new Cure());
-	else
-		return (NULL);
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materia[i] != NULL && this->_materia[i]->getType() == type)
+			return (this->_materia[i]->clone());
+	}
+	return (NULL);
 }
