@@ -4,6 +4,9 @@
 
 MateriaSource::MateriaSource()
 {
+	LIMIT_OF_MATERIAS_LIST = 100;
+	for (int i = 0; i < LIMIT_OF_MATERIAS_LIST; i++)
+		materias_list[i] = NULL;
 	for (int i = 0; i < 4; i++)
 		this->_materia[i] = NULL;
 }
@@ -34,6 +37,13 @@ MateriaSource & MateriaSource::operator=(MateriaSource const & src)
 	return (*this);
 }
 
+AMateria	*MateriaSource::get_index(int index)
+{
+	if (index < 0 || index >= INVENTORY_SIZE)
+		return (NULL);
+	return (this->_materia[index]);
+}
+
 void MateriaSource::learnMateria(AMateria* materia)
 {
 	for (int i = 0; i < 4; i++)
@@ -48,10 +58,14 @@ void MateriaSource::learnMateria(AMateria* materia)
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
+	AMateria *new_mat;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materia[i] != NULL && this->_materia[i]->getType() == type)
-			return (this->_materia[i]->clone());
+		{
+			new_mat = this->_materia[i]->clone();
+			return new_mat;
+		}
 	}
 	return (NULL);
 }

@@ -16,7 +16,7 @@ Cat::~Cat()
 	std::cout << "Déstruction du chat: " << this->getType() << std::endl;
 }
 
-void	Cat::makeSound()
+void	Cat::makeSound() const
 {
 	std::cout << "Miaou" << std::endl;
 }

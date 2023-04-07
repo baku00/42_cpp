@@ -14,6 +14,7 @@ int main()
 	Animal* dog = new Dog();
 	std::cout << "\n" << std::endl;
 	Animal* dog_copy = new Dog((Dog &) *dog);
+	// dog_copy->setType("Animal");
 	std::cout << "\n" << std::endl;
 	Animal* cat = new Cat();
 	std::cout << "\n" << std::endl;

@@ -16,7 +16,7 @@ WrongCat::~WrongCat()
 	std::cout << "Déstruction du mauvais chat: " << this->getType() << std::endl;
 }
 
-void	WrongCat::makeSound()
+void	WrongCat::makeSound() const
 {
 	std::cout << "Oups mauvais chat" << std::endl;
 }

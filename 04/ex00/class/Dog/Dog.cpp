@@ -16,7 +16,7 @@ Dog::~Dog()
 	std::cout << "Déstruction du chien: " << this->getType() << std::endl;
 }
 
-void	Dog::makeSound()
+void	Dog::makeSound() const
 {
 	std::cout << "Wouf" << std::endl;
 }

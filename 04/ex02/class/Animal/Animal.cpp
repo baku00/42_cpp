@@ -21,7 +21,7 @@ Animal::~Animal()
 	std::cout << "Déstruction de l'animal: " << this->getType() << std::endl;
 }
 
-std::string	Animal::getType()
+std::string	Animal::getType() const
 {
 	return this->type;
 }

@@ -23,12 +23,12 @@ WrongAnimal::~WrongAnimal()
 	std::cout << "Déstruction du wrongAnimal: " << this->getType() << std::endl;
 }
 
-std::string	WrongAnimal::getType()
+std::string	WrongAnimal::getType() const
 {
 	return this->type;
 }
 
-void	WrongAnimal::makeSound()
+void	WrongAnimal::makeSound() const
 {
 	std::cout << "Oups mauvais animal..." << std::endl;
 }

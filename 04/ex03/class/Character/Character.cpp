@@ -31,9 +31,12 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) {
-	if (idx >= 0 && idx < INVENTORY_SIZE && this->inventory[idx] != NULL) {
-		this->inventory[idx]->use(target);
+	if (idx < 0 || idx >= INVENTORY_SIZE || this->inventory[idx] == NULL)
+	{
+		std::cout << "Index out of range or unused" << std::endl;
+		return ;
 	}
+	this->inventory[idx]->use(target);
 }
 
 Character & Character::operator=(Character const & src) {
