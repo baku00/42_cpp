@@ -1,0 +1,28 @@
+NAME = Bureaucrat
+
+CC = c++ -std=c++98
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+
+BUREAUCRAT = class/Bureaucrat/Bureaucrat.cpp
+FORM = class/Form/Form.cpp
+
+FILES = main.cpp $(BUREAUCRAT) $(FORM)
+OBJS = $(FILES:.cpp=.o)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+clean:
+	@rm -rf $(OBJS)
+	@echo "Cleaning"
+
+fclean: clean
+	@rm -rf $(NAME)
+	@echo "Done"
+
+re: fclean all
