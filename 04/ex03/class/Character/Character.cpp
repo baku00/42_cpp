@@ -26,17 +26,30 @@ void Character::equip(AMateria* m) {
 }
 
 void Character::unequip(int idx) {
-	(void) idx;
+	if (idx >= 0 && idx < INVENTORY_SIZE)
+		this->inventory[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target) {
-	(void) idx;
-	(void) target;
+	if (idx < 0 || idx >= INVENTORY_SIZE || this->inventory[idx] == NULL)
+	{
+		std::cout << "Index out of range or unused" << std::endl;
+		return ;
+	}
+	this->inventory[idx]->use(target);
 }
 
-Character & Character::operator=(Character const & rhs) {
+Character & Character::operator=(Character const & src) {
 	std::cout << "Character assignation operator" << std::endl;
-	(void) rhs;
+	if (this != &src)
+	{
+		this->name = src.name;
+		for (int i = 0; i < INVENTORY_SIZE; i++) {
+			if (this->inventory[i] != NULL)
+				delete this->inventory[i];
+			this->inventory[i] = src.inventory[i]->clone();
+		}
+	}
 	return (*this);
 }
 

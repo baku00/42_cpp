@@ -16,17 +16,18 @@ Ice::Ice(Ice const & src) : AMateria(src)
 	std::cout << "Copy constructor of Ice" << std::endl;
 }
 
-void Ice::use(int idx, ICharacter& target)
+void Ice::use(ICharacter& target)
 {
-	(void) idx;
-	AMateria::use(target);
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
 
-Ice & Ice::operator=(Ice const & rhs)
+Ice & Ice::operator=(Ice const & src)
 {
 	std::cout << "Ice assignation operator" << std::endl;
-	(void) rhs;
+	if (this != &src)
+	{
+		this->type = src.type;
+	}
 	return (*this);
 }
 

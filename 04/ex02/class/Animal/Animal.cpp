@@ -3,39 +3,31 @@
 Animal::Animal(
 	std::string type
 ) {
+	std::cout << "Constructor of Animal with type" << std::endl;
 	this->type = type;
-	std::cout << "Animal constructor with type" << std::endl;
 }
 
-Animal::Animal(const Animal &animal)
-{
-	std::cout << "Animal copy constructor" << std::endl;
+Animal::Animal(const Animal &animal) {
 	*this = animal;
+	std::cout << "Copy constructor of Animal" << std::endl;
 }
 
-Animal::Animal()
-{
-	std::cout << "Animal default constructor" << std::endl;
+Animal::Animal() {
+	std::cout << "Default constructor of Animal" << std::endl;
 }
 
 Animal::~Animal()
 {
-	std::cout << "Déstruction de l'animal: " << this->type << std::endl;
+	std::cout << "Déstruction de l'animal: " << this->getType() << std::endl;
 }
 
-std::string Animal::getType() const
+std::string	Animal::getType() const
 {
 	return this->type;
 }
 
-void	Animal::makeSound() const
-{
-	std::cout << "Animal sound" << std::endl;
-}
-
-Animal	&Animal::operator=(const Animal &animal)
-{
-	std::cout << "Assignation operator" << std::endl;
-	this->type = animal.type;
+Animal &Animal::operator=(const Animal &animal) {
+	if (this != &animal)
+		this->type = animal.type;
 	return *this;
 }

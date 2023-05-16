@@ -15,17 +15,19 @@ Cure::Cure(Cure const & src) : AMateria(src)
 	std::cout << "Copy constructor of Cure" << std::endl;
 }
 
-void Cure::use(int idx, ICharacter& target)
+void Cure::use(ICharacter& target)
 {
-	(void) idx;
 	AMateria::use(target);
 	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
 
-Cure & Cure::operator=(Cure const & rhs)
+Cure & Cure::operator=(Cure const & src)
 {
 	std::cout << "Cure assignation operator" << std::endl;
-	(void) rhs;
+	if (this != &src)
+	{
+		this->type = src.type;
+	}
 	return (*this);
 }
 

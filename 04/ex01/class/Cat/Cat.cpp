@@ -2,14 +2,14 @@
 
 Cat::Cat(): Animal("Cat")
 {
-	std::cout << "Création du chat: " << this->getType() << std::endl;
+	std::cout << "Default constructor of Cat" << std::endl;
 	this->brain = new Brain();
 }
 
-Cat::Cat(const Cat &cat): Animal(cat.type)
+Cat::Cat(const Cat &cat): Animal()
 {
-	std::cout << "Création du chat: " << this->getType() << std::endl;
-	this->brain = new Brain(*cat.brain);
+	*this = cat;
+	std::cout << "Copy constructor of Cat" << std::endl;
 }
 
 Cat::~Cat()
@@ -18,16 +18,16 @@ Cat::~Cat()
 	delete this->brain;
 }
 
-void	Cat::makeSound()
+void	Cat::makeSound() const
 {
 	std::cout << "Miaou" << std::endl;
 }
 
-Cat	&Cat::operator=(const Cat &cat)
-{
-	std::cout << "Assignation operator" << std::endl;
-	this->type = cat.type;
-	delete this->brain;
-	this->brain = new Brain(*cat.brain);
+Cat &Cat::operator=(const Cat &cat) {
+	if (this != &cat)
+	{
+		this->type = cat.type;
+		this->brain = cat.brain;
+	}
 	return *this;
 }

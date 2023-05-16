@@ -13,7 +13,7 @@ class Ice : public AMateria
 		Ice & operator=(Ice const & src);
 
 		AMateria* clone() const;
-		void use(int idx, ICharacter& target);
+		void use(ICharacter& target);
 };
 
 #endif
