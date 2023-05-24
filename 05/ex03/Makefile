@@ -4,6 +4,7 @@ CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 BUREAUCRAT = class/Bureaucrat/Bureaucrat.cpp
+INTERN = class/Intern/Intern.cpp
 SHRUBBERY_CREATE_FORM = class/Form/Type/ShrubberyCreationForm/ShrubberyCreationForm.cpp
 SHRUBBERY_CREATE_FORM_CONFIG = class/Form/Type/ShrubberyCreationForm/Config/Config.cpp
 ROBOTOMY_REQUEST_FORM = class/Form/Type/RobotomyRequestForm/RobotomyRequestForm.cpp
@@ -11,7 +12,7 @@ PRESIDENTIAL_PARDON_FORM = class/Form/Type/PresidentialPardonForm/PresidentialPa
 RANDOM = class/Utils/Random/Random.cpp
 FORM = class/Form/Form.cpp
 
-FILES = main.cpp $(BUREAUCRAT) $(FORM) $(SHRUBBERY_CREATE_FORM) $(SHRUBBERY_CREATE_FORM_CONFIG) $(ROBOTOMY_REQUEST_FORM) $(PRESIDENTIAL_PARDON_FORM) $(RANDOM)
+FILES = main.cpp $(BUREAUCRAT) $(INTERN) $(FORM) $(SHRUBBERY_CREATE_FORM) $(SHRUBBERY_CREATE_FORM_CONFIG) $(ROBOTOMY_REQUEST_FORM) $(PRESIDENTIAL_PARDON_FORM) $(RANDOM)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp
