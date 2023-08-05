@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target): Form("ShrubberyForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("ShrubberyForm", 145, 137)
 {
 	this->target = target;
 }
@@ -8,7 +8,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target): Form("Shrubber
 void	ShrubberyCreationForm::action() const
 {
 	std::ofstream file((this->target + "_shrubbery").c_str());
-
+	std::cout << "Création de l'arbre dans " << this->target + "_shrubbery" << std::endl;
 	file << ShrubberyCreationFormConfig::getTree();
 }
 

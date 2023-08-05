@@ -5,12 +5,12 @@
 # include <string>
 # include <exception>
 # include <fstream>
-# include "../../Form.hpp"
+# include "../../AForm.hpp"
 # include "Config/Config.hpp"
 
-class Form;
+class AForm;
 
-class ShrubberyCreationForm : public Form
+class ShrubberyCreationForm : public AForm
 {
 	private:
 		std::string		target;

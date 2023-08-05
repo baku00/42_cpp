@@ -2,52 +2,30 @@
 #include "class/Intern/Intern.hpp"
 #include "class/Form/Type/ShrubberyCreationForm/ShrubberyCreationForm.hpp"
 #include "class/Form/Type/RobotomyRequestForm/RobotomyRequestForm.hpp"
+#include "class/Form/Type/PresidentialPardonForm/PresidentialPardonForm.hpp"
 
 int main()
 {
-	Bureaucrat *bureaucratToDecrement = new Bureaucrat("Patrick", 149);
-	std::cout << *bureaucratToDecrement << std::endl;
-
-	Bureaucrat *bureaucratToIncrement = new Bureaucrat("Bruel", 2);
-	std::cout << *bureaucratToIncrement << std::endl;
-
-	Form *shrubbery = new ShrubberyCreationForm("Jardin");
-	Form *robot = new RobotomyRequestForm("Perceuse");
-
-	try
-	{
-		shrubbery->execute(*bureaucratToIncrement);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-
-	bureaucratToDecrement->executeForm(*shrubbery);
-
+	std::cout << std::endl;
 	Intern *intern = new Intern();
-	Form *form = NULL;
-	try
-	{
-		form = intern->makeForm("robotomy request", "Bender");
-		std::cout << form << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
 
-	Intern	someRandomIntern;
-	Form *rrf;
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	AForm *shrubbery = intern->makeForm("shrubbery creation", "shrubbery");
+	AForm *robot = intern->makeForm("robotomy request", "robot");
+	AForm *president = intern->makeForm("presidential pardon", "president");
 
-	delete rrf;
-	delete bureaucratToDecrement;
-	delete bureaucratToIncrement;
+	std::cout << *shrubbery << std::endl;
+	std::cout << std::endl;
+
+	std::cout << *robot << std::endl;
+	std::cout << std::endl;
+
+	std::cout << *president << std::endl;
+	std::cout << std::endl;
+
+	delete intern;
 	delete shrubbery;
 	delete robot;
-	delete intern;
-	delete form;
-	return (0);
+	delete president;
+
+	return 0;
 }

@@ -10,38 +10,38 @@ Intern::Intern(Intern const &other)
 Intern::~Intern()
 {}
 
-Form *Intern::makeForm(std::string formName, std::string target)
+AForm *Intern::makeForm(std::string formName, std::string target)
 {
 	std::string	formsName[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	Form* (Intern::*forms[3])(std::string) = {
+	AForm* (Intern::*forms[3])(std::string) = {
 		&Intern::makeShrubberyCreationForm,
 		&Intern::makeRobotomyRequestForm,
 		&Intern::makePresidentialPardonForm
 	};
 
-
 	for (int i = 0; i < 3; i++)
 	{
 		if (formName == formsName[i])
 		{
-			std::cout << *this << " creates " << formName << std::endl;
+			std::cout << "Intern creates " << formName << std::endl;
 			return (this->*forms[i])(target);
 		}
 	}
+
 	throw Intern::FormTargetNullException();
 }
 
-Form	*Intern::makeShrubberyCreationForm(std::string target)
+AForm	*Intern::makeShrubberyCreationForm(std::string target)
 {
 	return new ShrubberyCreationForm(target);
 }
 
-Form	*Intern::makeRobotomyRequestForm(std::string target)
+AForm	*Intern::makeRobotomyRequestForm(std::string target)
 {
 	return new RobotomyRequestForm(target);
 }
 
-Form	*Intern::makePresidentialPardonForm(std::string target)
+AForm	*Intern::makePresidentialPardonForm(std::string target)
 {
 	return new PresidentialPardonForm(target);
 }
@@ -58,7 +58,7 @@ const char			*Intern::FormTargetNullException::what() const throw()
 }
 
 
-Form	*Intern::makeForm(std::string formName)
+AForm	*Intern::makeForm(std::string formName)
 {
 	(void) formName;
 	throw Intern::FormTargetNullException();

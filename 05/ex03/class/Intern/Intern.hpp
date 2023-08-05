@@ -4,12 +4,12 @@
 # include <iostream>
 # include <string>
 # include <exception>
-# include "../Form/Form.hpp"
+# include "../Form/AForm.hpp"
 # include "../Form/Type/PresidentialPardonForm/PresidentialPardonForm.hpp"
 # include "../Form/Type/ShrubberyCreationForm/ShrubberyCreationForm.hpp"
 # include "../Form/Type/RobotomyRequestForm/RobotomyRequestForm.hpp"
 
-class Form;
+class AForm;
 class PresidentialPardonForm;
 class ShrubberyCreationForm;
 class RobotomyRequestForm;
@@ -17,9 +17,9 @@ class RobotomyRequestForm;
 class Intern
 {
 	private:
-		Form	*makeShrubberyCreationForm(std::string target);
-		Form	*makeRobotomyRequestForm(std::string target);
-		Form	*makePresidentialPardonForm(std::string target);
+		AForm		*makeShrubberyCreationForm(std::string target);
+		AForm		*makeRobotomyRequestForm(std::string target);
+		AForm		*makePresidentialPardonForm(std::string target);
 
 	public:
 		Intern();
@@ -27,8 +27,8 @@ class Intern
 		~Intern();
 
 		Intern	&operator=(Intern const &other);
-		Form	*makeForm(std::string formName, std::string target);
-		Form	*makeForm(std::string formName);
+		AForm	*makeForm(std::string formName, std::string target);
+		AForm	*makeForm(std::string formName);
 
 		class FormTargetNullException : public std::exception
 		{
@@ -38,6 +38,6 @@ class Intern
 };
 
 std::ostream	&operator<<(std::ostream &out, Intern const &intern);
-typedef	Form *(*f_ptr)(std::string const & target);
+typedef	AForm *(*f_ptr)(std::string const & target);
 
 #endif
