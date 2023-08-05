@@ -26,7 +26,7 @@ Bureaucrat	&Bureaucrat::operator=(Bureaucrat const &other)
 	return (*this);
 }
 
-std::string const	&Bureaucrat::getName() const
+std::string const	Bureaucrat::getName() const
 {
 	return (this->_name);
 }

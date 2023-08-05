@@ -25,7 +25,7 @@ class Form
 
 		Form	&operator=(Form const &other);
 
-		std::string const	&getName() const;
+		std::string const	getName() const;
 		int					getGradeToSign() const;
 		int					getGradeToExecute() const;
 		int					isSigned() const;
