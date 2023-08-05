@@ -5,11 +5,11 @@
 # include <string>
 # include <exception>
 # include "Config.hpp"
-# include "../../Form.hpp"
+# include "../../AForm.hpp"
 
-class Form;
+class AForm;
 
-class PresidentialPardonForm : public Form
+class PresidentialPardonForm : public AForm
 {
 	private:
 		std::string		target;

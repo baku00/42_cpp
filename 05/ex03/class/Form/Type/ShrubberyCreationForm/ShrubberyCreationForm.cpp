@@ -9,7 +9,6 @@ void	ShrubberyCreationForm::action() const
 {
 	std::ofstream file((this->target + "_shrubbery").c_str());
 
-	std::cout << "no error" << std::endl;
 	file << ShrubberyCreationFormConfig::getTree();
 }
 

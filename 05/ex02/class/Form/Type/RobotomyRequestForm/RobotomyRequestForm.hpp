@@ -5,12 +5,12 @@
 # include <string>
 # include <exception>
 # include "Config.hpp"
-# include "../../Form.hpp"
+# include "../../AForm.hpp"
 # include "../../../Utils/Random/Random.hpp"
 
-class Form;
+class AForm;
 
-class RobotomyRequestForm : public Form
+class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string		target;

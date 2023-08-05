@@ -5,9 +5,9 @@
 # include <string>
 # include <exception>
 # include "Config.hpp"
-# include "../Form/Form.hpp"
+# include "../Form/AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -28,9 +28,9 @@ class Bureaucrat
 
 		void				incrementGrade();
 		void				decrementGrade();
-		void				signForm(Form &form);
+		void				signForm(AForm &form);
 
-		void				executeForm(Form const & form);
+		void				executeForm(AForm const & form);
 
 		class GradeTooHighException : public std::exception
 		{

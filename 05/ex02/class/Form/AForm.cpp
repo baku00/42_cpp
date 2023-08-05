@@ -7,7 +7,7 @@ AForm::AForm(std::string const &name, int grade_to_sign, int grade_to_execute) :
 		throw AForm::GradeTooHighException();
 	else if (grade_to_sign < Config::MAX_GRADE || grade_to_execute < Config::MAX_GRADE)
 		throw AForm::GradeTooLowException();
-	this->_signed = true;
+	this->_signed = false;
 }
 
 AForm::AForm(AForm const &other): _name(other._name), _grade_to_sign(other._grade_to_sign), _grade_to_execute(other._grade_to_execute)
@@ -64,7 +64,7 @@ void				AForm::execute(Bureaucrat const &executor) const
 
 const char			*AForm::NotSignedException::what() const throw()
 {
-	return ("AForm isn't signed");
+	return ("Formulaire isn't signed");
 }
 
 const char			*AForm::GradeTooHighException::what() const throw()
