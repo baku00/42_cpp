@@ -26,7 +26,7 @@ Form	&Form::operator=(Form const &other)
 	return (*this);
 }
 
-std::string const	&Form::getName() const
+std::string const	Form::getName() const
 {
 	return (this->_name);
 }

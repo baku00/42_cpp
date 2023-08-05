@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form(std::string const &name, int grade_to_sign, int grade_to_execute) :
+Form::Form(std::string const name, int grade_to_sign, int grade_to_execute) :
 	_name(name), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
 {
 	if (grade_to_sign > Config::MIN_GRADE || grade_to_execute > Config::MIN_GRADE)
@@ -26,7 +26,7 @@ Form	&Form::operator=(Form const &other)
 	return (*this);
 }
 
-std::string const	&Form::getName() const
+std::string const	Form::getName() const
 {
 	return (this->_name);
 }
@@ -46,7 +46,7 @@ int					Form::isSigned() const
 	return (this->_signed);
 }
 
-void				Form::beSigned(Bureaucrat const &bureaucrat)
+void				Form::beSigned(Bureaucrat const bureaucrat)
 {
 	if (this->_grade_to_sign < bureaucrat.getGrade())
 		throw Form::GradeTooLowException();
@@ -63,11 +63,11 @@ const char			*Form::GradeTooLowException::what() const throw()
 	return ("Grade too low");
 }
 
-std::ostream	&operator<<(std::ostream &out, Form const &bureaucrat)
+std::ostream	&operator<<(std::ostream &out, Form const &form)
 {
-	out << "Name: " << bureaucrat.getName() << "\n"
-	<< "Grade to sign: " << bureaucrat.getGradeToSign() << "\n"
-	<< "Grade to execute: " << bureaucrat.getGradeToExecute() << "\n"
-	<< "Signed: " << bureaucrat.isSigned();
+	out << "Name: " << form.getName() << "\n"
+	<< "Grade to sign: " << form.getGradeToSign() << "\n"
+	<< "Grade to execute: " << form.getGradeToExecute() << "\n"
+	<< "Signed: " << form.isSigned();
 	return (out);
 }
