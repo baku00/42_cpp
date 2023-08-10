@@ -4,9 +4,9 @@ AForm::AForm(std::string const &name, int grade_to_sign, int grade_to_execute) :
 	_name(name), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
 {
 	if (grade_to_sign > Config::MIN_GRADE || grade_to_execute > Config::MIN_GRADE)
-		throw AForm::GradeTooHighException();
-	else if (grade_to_sign < Config::MAX_GRADE || grade_to_execute < Config::MAX_GRADE)
 		throw AForm::GradeTooLowException();
+	else if (grade_to_sign < Config::MAX_GRADE || grade_to_execute < Config::MAX_GRADE)
+		throw AForm::GradeTooHighException();
 	this->_signed = false;
 }
 
