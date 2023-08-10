@@ -3,8 +3,8 @@ NAME = Bureaucrat
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-BUREAUCRAT = Bureaucrat.cpp
-FORM = Form.cpp
+BUREAUCRAT = class/Bureaucrat/Bureaucrat.cpp
+FORM = class/Form/Form.cpp
 
 FILES = main.cpp $(BUREAUCRAT) $(FORM)
 OBJS = $(FILES:.cpp=.o)
