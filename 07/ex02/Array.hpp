@@ -3,6 +3,11 @@
 
 template <typename T>
 class Array {
+
+	private:
+		unsigned int	_size;
+		T				*_array;
+
 	public:
 		Array( void ) : _size(0), _array(NULL) {}
 		Array( unsigned int n ) : _size(n), _array(new T[n]) {}
@@ -36,10 +41,6 @@ class Array {
 		unsigned int size( void ) const {
 			return _size;
 		}
-
-	private:
-		unsigned int	_size;
-		T				*_array;
 };
 
 #endif

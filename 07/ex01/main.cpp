@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./template/iter.hpp"
+#include "iter.hpp"
 
 void print(int& elem) {
 	std::cout << elem << std::endl;

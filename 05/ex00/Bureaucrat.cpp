@@ -4,9 +4,9 @@ Bureaucrat::Bureaucrat(std::string const &name, int grade) :
 	_name(name)
 {
 	if (grade > Config::MIN_GRADE)
-		throw Bureaucrat::GradeTooHighException();
-	else if (grade < Config::MAX_GRADE)
 		throw Bureaucrat::GradeTooLowException();
+	else if (grade < Config::MAX_GRADE)
+		throw Bureaucrat::GradeTooHighException();
 	this->_grade = grade;
 }
 

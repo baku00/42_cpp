@@ -1,11 +1,11 @@
-NAME = Bureaucrat
+NAME = ScalarConverter
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-BUREAUCRAT = class/Bureaucrat/Bureaucrat.cpp
+SCALAR_CONVERTER = ScalarConverter.cpp
 
-FILES = main.cpp $(BUREAUCRAT)
+FILES = main.cpp $(SCALAR_CONVERTER)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./template/whatever.hpp"
+#include "whatever.hpp"
 
 int main( void ) {
 	int a = 2;
