@@ -14,7 +14,6 @@ class ShrubberyCreationForm : public AForm
 	private:
 		std::string		target;
 		virtual void	action() const;
-		ShrubberyCreationForm();
 
 	public:
 		ShrubberyCreationForm(std::string target);
