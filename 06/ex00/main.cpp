@@ -1,4 +1,11 @@
-int main()
+#include "ScalarConverter.hpp"
+
+int main(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
+
+	ScalarConverter::convert(argv[1]);
+
 	return (0);
 }

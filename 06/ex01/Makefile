@@ -1,12 +1,12 @@
-NAME = Bureaucrat
+NAME = Serializer
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-BUREAUCRAT = class/Bureaucrat/Bureaucrat.cpp
-FORM = class/Form/Form.cpp
+DATA = Data.cpp
+SERIALIZER = Serializer.cpp
 
-FILES = main.cpp $(BUREAUCRAT) $(FORM)
+FILES = main.cpp $(SERIALIZER) $(DATA)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp
