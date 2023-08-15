@@ -1,76 +1,44 @@
-	#include "ScalarConverter.hpp"
+#include "ScalarConverter.hpp"
 
 void ScalarConverter::convert(const std::string& literal) {
-	if (ScalarConverter::isChar(literal)) {
-		char value = literal[1];
-		std::cout << "Char: " << value << std::endl;
-		ScalarConverter::convertAndPrint(value);
-	}
-	else if (ScalarConverter::isInt(literal)) {
-		int value = atoi(literal.c_str());
-		std::cout << "Int: " << value << std::endl;
-		ScalarConverter::convertAndPrint(value);
-	}
-	else if (ScalarConverter::isFloat(literal)) {
-		float value = atof(literal.c_str());
-		std::cout << "Float: " << value << std::endl;
-		ScalarConverter::convertAndPrint(value);
-	}
-	else if (ScalarConverter::isDouble(literal)) {
-		double value = atof(literal.c_str());
-		std::cout << "Double: " << value << std::endl;
-		ScalarConverter::convertAndPrint(value);
-	}
-	else {
-		std::cout << "Invalid literal format" << std::endl;
-	}
-}
+	char c = static_cast<char>(std::atoi(literal.c_str()));
+	float f = static_cast<float>(std::atof(literal.c_str()));
+	double d = static_cast<double>(std::atof(literal.c_str()));
 
-bool ScalarConverter::isChar(const std::string& literal) {
-	return (literal.size() == 3 && literal[0] == '\'' && literal[2] == '\'');
-}
+	std::ostringstream stream;
+	stream << f;
+	std::string floatString = stream.str();
 
-bool ScalarConverter::isInt(const std::string& literal) {
-	try {
-		atoi(literal.c_str());
-		return true;
-	} catch (...) {
-		return false;
+	if (literal[literal.length() - 1] == 'f')
+	{
 	}
-}
 
-bool ScalarConverter::isFloat(const std::string& literal) {
-	try {
-		atof(literal.c_str());
-		return true;
-	} catch (...) {
-		return false;
-	}
-}
+	bool impossible = d - static_cast<int>(d) == 0 ? d : static_cast<double>(std::atof(literal.c_str()));
 
-bool ScalarConverter::isDouble(const std::string& literal) {
-	try {
-		atof(literal.c_str());
-		return true;
-	} catch (...) {
-		return false;
-	}
-}
+	std::cout << "char: ";
+	if (impossible)
+		std::cout << "impossible" << std::endl;
+	else if (!std::isprint(c))
+		std::cout << "Non displayable" << std::endl;
+	else
+		std::cout << "'" << c << "'" << std::endl;
 
-template <typename T>
-void ScalarConverter::convertAndPrint(T value) {
-	ScalarConverter::convertAndPrintWithType<float>(value);
-	ScalarConverter::convertAndPrintWithType<double>(value);
-	ScalarConverter::convertAndPrintWithType<int>(value);
-}
+	std::cout << "int: ";
+	if (impossible)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << (static_cast<int>(c)) << std::endl;
 
-template <typename DestType, typename SrcType>
-void ScalarConverter::convertAndPrintWithType(SrcType value) {
-	if (std::numeric_limits<DestType>::is_specialized) {
-		if (value > std::numeric_limits<DestType>::max() || value < std::numeric_limits<DestType>::min()) {
-			std::cout << "Conversion impossible due to overflow" << std::endl;
-			return;
-		}
-	}
-	std::cout << "Converted to " << typeid(DestType).name() << ": " << static_cast<DestType>(value) << std::endl;
+	std::cout << "float: ";
+	if (f - static_cast<int>(f) == 0)
+		std::cout << f << ".0f" << std::endl;
+	else
+		std::cout << f << "f" << std::endl;
+
+	std::cout << "double: ";
+
+	if (d - static_cast<int>(d) == 0)
+		std::cout << d << ".0" << std::endl;
+	else
+		std::cout << d << std::endl;
 }

@@ -4,15 +4,17 @@
 #include <string>
 #include <typeinfo>
 #include <iostream>
+#include <sstream>
 #include <limits>
 #include <cmath>
+#include <stdlib.h>
 
 class ScalarConverter {
 public:
 	static void convert(const std::string& literal);
 
 private:
-	static bool isChar(const std::string& literal);
+	static int isChar(const std::string& literal);
 	static bool isInt(const std::string& literal);
 	static bool isFloat(const std::string& literal);
 	static bool isDouble(const std::string& literal);

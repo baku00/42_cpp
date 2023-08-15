@@ -1,4 +1,4 @@
-NAME = ScalarConverter
+NAME = convert
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
