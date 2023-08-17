@@ -3,13 +3,9 @@
 #include "B.hpp"
 #include "C.hpp"
 
-Base::~Base() {}
-
 Base *generate(void)
 {
-	int i;
-	std::srand(std::time(NULL));
-	i = (std::rand() % 3);
+	int i = (std::rand() % 3);
 
 	switch (i)
 	{
@@ -24,22 +20,49 @@ Base *generate(void)
 
 void identify(Base *p)
 {
+	std::cout << "Pointer of type: ";
 	if (dynamic_cast<A *>(p))
 		std::cout << "A" << std::endl;
 	else if (dynamic_cast<B *>(p))
 		std::cout << "B" << std::endl;
 	else if (dynamic_cast<C *>(p))
 		std::cout << "C" << std::endl;
+	else
+		std::cout << "Unknown" << std::endl;
 }
 
 void identify(Base &p)
 {
-	if (dynamic_cast<A *>(&p))
+	std::cout << "Reference of type: ";
+
+	try
+	{
+		A &a = dynamic_cast<A &>(p);
+		(void) a;
 		std::cout << "A" << std::endl;
-	else if (dynamic_cast<B *>(&p))
+		return ;
+	}
+	catch(const std::exception& e) {}
+
+	try
+	{
+		B &b = dynamic_cast<B &>(p);
+		(void) b;
 		std::cout << "B" << std::endl;
-	else if (dynamic_cast<C *>(&p))
+		return ;
+	}
+	catch(const std::exception& e) {}
+
+	try
+	{
+		C &c = dynamic_cast<C &>(p);
+		(void) c;
 		std::cout << "C" << std::endl;
+		return ;
+	}
+	catch(const std::exception& e) {}
+
+	std::cout << "Unknown" << std::endl;
 }
 
 void wait(int second)
@@ -52,11 +75,12 @@ int main()
 {
 	int count = 10;
 	int second = 1;
+	Base *b;
 
 	for (int i = 0; i < count; i++)
 	{
 		std::cout << "Test " << i + 1 << "/" << count << std::endl;
-		Base *b = generate();
+		b = generate();
 		identify(b);
 		identify(*b);
 		std::cout << std::endl;

@@ -19,6 +19,11 @@ private:
 	static bool isFloat(const std::string& literal);
 	static bool isDouble(const std::string& literal);
 
+	static void printChar(const std::string& literal);
+	static void printInt(const std::string& literal);
+	static void printFloat(const std::string& literal);
+	static void printDouble(const std::string& literal);
+
 	template <typename T>
 	static void convertAndPrint(T value);
 

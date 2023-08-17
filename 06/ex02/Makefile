@@ -3,8 +3,8 @@ NAME = Identifier
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-
-FILES = main.cpp
+BASE = Base.cpp
+FILES = main.cpp $(BASE)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp
