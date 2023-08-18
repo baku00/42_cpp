@@ -22,8 +22,10 @@ public:
 		static bool isFloat(const std::string& literal);
 		static bool isDouble(const std::string& literal);
 		static bool isImpossible(const std::string& literal);
+		static std::string isException(const std::string& literal);
 
 		static void printImpossible();
+		static void printException(const std::string &literal);
 
 		static void printChar(char c);
 		static void printInt(int i);

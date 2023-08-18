@@ -3,6 +3,10 @@
 
 
 void ScalarConverter::convert(const std::string& literal) {
+	std::string new_literal = isException(literal);
+	if (new_literal.length() > 0)
+		return ScalarConverter::printException(new_literal);
+
 	if (isImpossible(literal))
 		return ScalarConverter::printImpossible();
 
@@ -57,6 +61,16 @@ void ScalarConverter::convert(const std::string& literal) {
 	ScalarConverter::printDouble(d);
 }
 
+std::string ScalarConverter::isException(const std::string& literal) {
+	if (!literal.compare("inf") || !literal.compare("inff"))
+		return "inf";
+	if (!literal.compare("+inf") || !literal.compare("+inff"))
+		return "+inf";
+	if (!literal.compare("-inf") || !literal.compare("-inff"))
+		return "-inf";
+	return "";
+}
+
 bool ScalarConverter::inOverflow(const std::string &literal)
 {
 	size_t i = 0;
@@ -89,6 +103,14 @@ void ScalarConverter::printImpossible()
 	std::cout << "int: impossible" << std::endl;
 	std::cout << "float: nan" << std::endl;
 	std::cout << "double: nanf" << std::endl;
+}
+
+void ScalarConverter::printException(const std::string &literal)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << literal << "f" << std::endl;
+	std::cout << "double: " << literal << std::endl;
 }
 
 bool ScalarConverter::isImpossible(const std::string& literal) {
