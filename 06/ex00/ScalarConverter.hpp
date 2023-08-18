@@ -13,22 +13,24 @@ class ScalarConverter {
 public:
 	static void convert(const std::string& literal);
 
-private:
-	static int isChar(const std::string& literal);
-	static bool isInt(const std::string& literal);
-	static bool isFloat(const std::string& literal);
-	static bool isDouble(const std::string& literal);
+	private:
+		ScalarConverter();
+		~ScalarConverter();
 
-	static void printChar(const std::string& literal);
-	static void printInt(const std::string& literal);
-	static void printFloat(const std::string& literal);
-	static void printDouble(const std::string& literal);
+		static bool isChar(const std::string& literal);
+		static bool isInt(const std::string& literal);
+		static bool isFloat(const std::string& literal);
+		static bool isDouble(const std::string& literal);
+		static bool isImpossible(const std::string& literal);
 
-	template <typename T>
-	static void convertAndPrint(T value);
+		static void printImpossible();
 
-	template <typename DestType, typename SrcType>
-	static void convertAndPrintWithType(SrcType value);
+		static void printChar(char c);
+		static void printInt(int i);
+		static void printFloat(float f);
+		static void printDouble(double d);
+
+		static bool inOverflow(const std::string& literal);
 };
 
 #endif // SCALARCONVERTER_H
