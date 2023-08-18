@@ -101,8 +101,8 @@ void ScalarConverter::printImpossible()
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: nan" << std::endl;
-	std::cout << "double: nanf" << std::endl;
+	std::cout << "float: nanf" << std::endl;
+	std::cout << "double: nan" << std::endl;
 }
 
 void ScalarConverter::printException(const std::string &literal)
