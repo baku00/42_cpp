@@ -14,10 +14,10 @@ void ScalarConverter::convert(const std::string& literal) {
 	if (!is_char && !is_int && !is_float && !is_double)
 		return ScalarConverter::printImpossible();
 
-	char c;
-	int i;
-	float f;
-	double d;
+	char c = 0;
+	int i = 0;
+	float f = 0;
+	double d = 0;
 
 	if ((is_double || is_float || is_int) && ScalarConverter::inOverflow(literal))
 		return ScalarConverter::printImpossible();
