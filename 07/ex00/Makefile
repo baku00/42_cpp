@@ -1,4 +1,4 @@
-NAME = Template
+NAME = whatever
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
