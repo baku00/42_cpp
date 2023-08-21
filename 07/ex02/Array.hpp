@@ -30,14 +30,14 @@ class Array {
 				delete [] _array;
 		}
 
-		Array & operator=( Array const & rhs ) {
-			if (this != &rhs) {
+		Array & operator=( Array const & other ) {
+			if (this != &other) {
 				if (_array)
 					delete [] _array;
-				_size = rhs._size;
-				_array = new T[rhs._size];
-				for (unsigned int i = 0; i < rhs._size; i++)
-					_array[i] = rhs._array[i];
+				_size = other._size;
+				_array = new T[other._size];
+				for (unsigned int i = 0; i < other._size; i++)
+					_array[i] = other._array[i];
 			}
 			return *this;
 		}
