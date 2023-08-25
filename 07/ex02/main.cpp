@@ -66,7 +66,7 @@ int main()
 
 	display("c", c);
 	display("b", b);
-	
+
 	std::cout << std::endl << "Test 7: Création de d liste vide" << std::endl;
 	Array<int> d;
 

@@ -1,12 +1,20 @@
 #include <iostream>
-#include "iter.hpp"
-
-void print(int& elem) {
-	std::cout << elem << std::endl;
-}
+#include "Span.hpp"
 
 int main( void ) {
-	int a[] = {1, 2, 3, 4, 5};
-	::iter(a, 5, print);
+	Span sp = Span(5);
+
+	try {
+		sp.addNumber(5);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
+	std::cout << "Longest: " << sp.longestSpan() << std::endl;
 	return 0;
 }
