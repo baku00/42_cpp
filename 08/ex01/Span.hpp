@@ -3,6 +3,7 @@
 # include <stdexcept>
 # include <algorithm>
 # include <vector>
+# include <iostream>
 
 /**
  * @brief Span class
@@ -22,14 +23,20 @@ class Span {
 		unsigned int	N;
 
 		/**
-		 * @brief Array number
+		 * @brief Number element in the array
 		*/
-		int				*_array;
+		int	_size;
 
 		/**
-		 * @brief Number of elements in the array
+		 * @brief Array number
 		*/
-		unsigned int	_size;
+		std::vector<int>				_array;
+
+		/**
+		 * @brief Get distance
+		 * @return int
+		*/
+		int		getDistance(int a, int b);
 
 		/**
 		 * @brief Array is full
@@ -93,6 +100,28 @@ class Span {
 		~Span	();
 
 
+		// Accessors
+
+		/**
+		 * @brief return the size of the array
+		 * @return unsigned int
+		*/
+		unsigned int	getN() const;
+
+		/**
+		 * @brief return the number element of the array
+		 * @return unsigned int
+		*/
+		unsigned int	getSize() const;
+
+		/**
+		 * @brief return the array
+		 * @return int *
+		*/
+
+		std::vector<int>	getArray() const;
+
+
 		// Methods
 
 		/**
@@ -115,6 +144,12 @@ class Span {
 		int longestSpan();
 };
 
+/**
+ * @brief Rewrite output operator
+ * @param out standart output
+ * @param span reference of instance of Span
+ * @return std::ostream
+*/
 std::ostream	&operator<<(std::ostream &out, const Span &span);
 
 #endif
