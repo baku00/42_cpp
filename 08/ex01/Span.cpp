@@ -3,7 +3,7 @@
 Span::Span(unsigned int n)
 {
 	this->N = n;
-	this->_size = 0;
+	this->_current_size = 0;
 }
 
 Span::Span(const Span &copy)
@@ -22,8 +22,8 @@ Span	&Span::operator=(const Span &copy)
 	{
 		this->N = copy.N;
 		this->_array.clear();
-
-		for (std::vector<int>::iterator it = copy.getArray().begin(); it != copy.getArray().end(); it++)
+		std::vector<int> array = copy.getArray();
+		for (std::vector<int>::iterator it = array.begin(); it != array.end(); it++)
 			this->_array.push_back(*it);
 	}
 	return (*this);
@@ -34,9 +34,9 @@ unsigned int	Span::getN() const
 	return (this->N);
 }
 
-unsigned int	Span::getSize() const
+unsigned int	Span::getCurrentSize() const
 {
-	return (this->_size);
+	return (this->_current_size);
 }
 
 std::vector<int>	Span::getArray() const
@@ -44,24 +44,35 @@ std::vector<int>	Span::getArray() const
 	return (this->_array);
 }
 
-int		Span::getDistance(int a, int b)
+const std::vector<int>	&Span::getRefArray() const
 {
-	return a > b ? a - b : b - a;
+	return (this->_array);
 }
 
 void	Span::addNumber(int n)
 {
-	if (this->getSize() == this->getN())
+	if (this->getCurrentSize() == this->getN())
 		throw Span::FullException();
 	this->_array.push_back(n);
-	this->_size += 1;
+	this->_current_size += 1;
+}
+
+void	Span::fill()
+{
+	const int size = this->getN();
+
+	srand(time(NULL));
+	for (int i = 0; i < size; i++)
+	{
+		this->addNumber(rand() % (size * 100) + 1);
+	}
 }
 
 int		Span::shortestSpan()
 {
-	if (this->getSize() == 0)
+	if (this->getCurrentSize() == 0)
 		throw Span::EmptyException();
-	if (this->getSize() < 2)
+	if (this->getCurrentSize() < 2)
 		throw Span::TooSmallException();
 
 	int distance = -1;
@@ -74,7 +85,7 @@ int		Span::shortestSpan()
 			latest = it;
 			continue;
 		}
-		int compare = this->getDistance(*it, *latest);
+		int compare = abs(*it - *latest);
 		latest = it;
 		if (compare < distance || distance == -1)
 			distance = compare;
@@ -85,9 +96,9 @@ int		Span::shortestSpan()
 
 int		Span::longestSpan()
 {
-	if (this->_size == 0)
+	if (this->_current_size == 0)
 		throw Span::EmptyException();
-	if (this->_size < 2)
+	if (this->_current_size < 2)
 		throw Span::TooSmallException();
 
 	int distance = -1;
@@ -100,7 +111,7 @@ int		Span::longestSpan()
 			latest = it;
 			continue;
 		}
-		int compare = this->getDistance(*it, *latest);
+		int compare = abs(*it - *latest);
 		latest = it;
 		if (compare > distance || distance == -1)
 			distance = compare;
@@ -127,11 +138,12 @@ const char *Span::EmptyException::what() const throw()
 std::ostream	&operator<<(std::ostream &out, const Span &span)
 {
 	out << "Span: ";
-	if (span.getSize() == 0)
+	if (span.getCurrentSize() == 0)
 		out << "empty";
 	else
 	{
-		for (std::vector<int>::iterator it = span.getArray().begin(); it != span.getArray().end(); it++)
+		std::vector<int> array = span.getArray();
+		for (std::vector<int>::iterator it = array.begin(); it != array.end(); it++)
 			out << *it << " ";
 	}
 	return (out);

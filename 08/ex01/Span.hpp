@@ -4,6 +4,8 @@
 # include <algorithm>
 # include <vector>
 # include <iostream>
+# include <cstdlib>
+# include <ctime>
 
 /**
  * @brief Span class
@@ -25,18 +27,12 @@ class Span {
 		/**
 		 * @brief Number element in the array
 		*/
-		int	_size;
+		int	_current_size;
 
 		/**
 		 * @brief Array number
 		*/
 		std::vector<int>				_array;
-
-		/**
-		 * @brief Get distance
-		 * @return int
-		*/
-		int		getDistance(int a, int b);
 
 		/**
 		 * @brief Array is full
@@ -112,14 +108,19 @@ class Span {
 		 * @brief return the number element of the array
 		 * @return unsigned int
 		*/
-		unsigned int	getSize() const;
+		unsigned int	getCurrentSize() const;
 
 		/**
 		 * @brief return the array
-		 * @return int *
+		 * @return std::vector<int>
 		*/
-
 		std::vector<int>	getArray() const;
+
+		/**
+		 * @brief return a reference of the array
+		 * @return std::vector<int>
+		*/
+		const std::vector<int>	&getRefArray() const;
 
 
 		// Methods
@@ -132,16 +133,22 @@ class Span {
 		void	addNumber(int n);
 
 		/**
+		 * @brief fill array with random number
+		 * @return void
+		*/
+		void	fill();
+
+		/**
 		 * @brief return the shortest distance between two span
 		 * @return int
 		*/
-		int shortestSpan();
+		int		shortestSpan();
 
 		/**
 		 * @brief return the longest distance between two span
 		 * @return int
 		*/
-		int longestSpan();
+		int		longestSpan();
 };
 
 /**
