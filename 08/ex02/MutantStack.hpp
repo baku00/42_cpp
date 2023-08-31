@@ -1,9 +1,27 @@
-template <typename T, typename Container = std::deque<T>>
-class IterableStack : public std::stack<T, Container>
-{
-	public:
-		using std::stack<T, Container>::stack; // Inherit constructors
+#ifndef MUTANTSTACK_HPP
+# define MUTANTSTACK_HPP
 
-		typename Container::iterator begin() { return this->c.begin(); }
-		typename Container::iterator end() { return this->c.end(); }
+# include <iostream>
+# include <stack>
+# include <iterator>
+
+template <typename T>
+class MutantStack: public std::stack<T> {
+	public:
+			typedef typename std::stack<T>::container_type::iterator iterator;
+
+			iterator begin() {
+				return iterator(this->c.begin());
+			}
+
+			iterator end() {
+				return iterator(this->c.end());
+			}
+
+			MutantStack<T>	&operator=(const MutantStack<T> &src) {
+				std::stack<T>::operator=(src);
+				return *this;
+			}
 };
+
+#endif

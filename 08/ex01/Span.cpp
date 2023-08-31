@@ -3,7 +3,6 @@
 Span::Span(unsigned int n)
 {
 	this->N = n;
-	this->_current_size = 0;
 }
 
 Span::Span(const Span &copy)
@@ -36,7 +35,7 @@ unsigned int	Span::getN() const
 
 unsigned int	Span::getCurrentSize() const
 {
-	return (this->_current_size);
+	return this->_array.size();
 }
 
 std::vector<int>	Span::getArray() const
@@ -54,15 +53,19 @@ void	Span::addNumber(int n)
 	if (this->getCurrentSize() == this->getN())
 		throw Span::FullException();
 	this->_array.push_back(n);
-	this->_current_size += 1;
 }
 
 void	Span::fill()
 {
-	const int size = this->getN();
+	if (this->getCurrentSize() == this->getN())
+		throw Span::FullException();
+	int size = this->getN();
+
+	// Ne permet pas l'aléatoire
+	// this->_array.insert(this->_array.end(), this->getN() - this->getCurrentSize(), rand() % (size * 100) + 1);
 
 	srand(time(NULL));
-	for (int i = 0; i < size; i++)
+	for (int i = this->getCurrentSize(); i < size; i++)
 	{
 		this->addNumber(rand() % (size * 100) + 1);
 	}
@@ -96,9 +99,9 @@ int		Span::shortestSpan()
 
 int		Span::longestSpan()
 {
-	if (this->_current_size == 0)
+	if (this->getCurrentSize() == 0)
 		throw Span::EmptyException();
-	if (this->_current_size < 2)
+	if (this->getCurrentSize() < 2)
 		throw Span::TooSmallException();
 
 	int distance = -1;

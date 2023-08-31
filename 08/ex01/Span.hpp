@@ -25,11 +25,6 @@ class Span {
 		unsigned int	N;
 
 		/**
-		 * @brief Number element in the array
-		*/
-		int	_current_size;
-
-		/**
 		 * @brief Array number
 		*/
 		std::vector<int>				_array;

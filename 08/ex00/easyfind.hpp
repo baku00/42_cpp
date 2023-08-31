@@ -4,12 +4,9 @@
 # include <algorithm>
 
 template<typename T>
-typename T::iterator easyfind(T container, int n)
+typename T::iterator easyfind(T &container, int n)
 {
-	for (typename T::iterator it = container.begin(); it != container.end(); it++)
-		if (*it == n)
-			return it;
-	return container.end();
+	return std::find(container.begin(), container.end(), n);
 }
 
 #endif
