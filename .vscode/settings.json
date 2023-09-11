@@ -66,6 +66,7 @@
 		"chrono": "cpp",
 		"ratio": "cpp",
 		"thread": "cpp",
-		"stack": "cpp"
+		"stack": "cpp",
+		"map": "cpp"
 	}
 }
