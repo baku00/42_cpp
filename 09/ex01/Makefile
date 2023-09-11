@@ -1,10 +1,10 @@
-NAME = Span
+NAME = RPN
 
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-SPAN = Span.cpp
-FILES = main.cpp $(SPAN)
+RPN = RPN.cpp
+FILES = main.cpp $(RPN)
 OBJS = $(FILES:.cpp=.o)
 
 %.o: %.cpp

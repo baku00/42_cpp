@@ -4,7 +4,7 @@
 #include "BitcoinExchange.hpp"
 
 int main() {
-	BitcoinExchange exchange;
-	std::cout << "IsValidDate: " << exchange.isValidDate("2023-02-28") << std::endl;
+	BitcoinExchange exchange("input.txt");
+	// std::cout << exchange.findRate("2018-01-01") << std::endl;
 	return 0;
 }
