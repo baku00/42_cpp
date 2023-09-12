@@ -35,19 +35,23 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &rhs)
 	if (this != &rhs)
 	{
 		this->unsortedVector.clear();
-		for (std::vector<int>::iterator it = rhs.getUnsortedVector().begin(); it != rhs.getUnsortedVector().end(); it++)
+		std::vector<int> usv = rhs.getUnsortedVector();
+		for (std::vector<int>::iterator it = usv.begin(); it != usv.end(); it++)
 			this->unsortedVector.push_back(*it);
 		
 		this->sortedVector.clear();
-		for (std::vector<int>::iterator it = rhs.getSortedVector().begin(); it != rhs.getSortedVector().end(); it++)
+		std::vector<int> sv = rhs.getSortedVector();
+		for (std::vector<int>::iterator it = sv.begin(); it != sv.end(); it++)
 			this->sortedVector.push_back(*it);
 
 		this->unsortedList.clear();
-		for (std::list<int>::iterator it = rhs.getUnsortedList().begin(); it != rhs.getUnsortedList().end(); it++)
+		std::list<int> usl = rhs.getUnsortedList();
+		for (std::list<int>::iterator it = usl.begin(); it != usl.end(); it++)
 			this->unsortedList.push_back(*it);
 		
 		this->sortedList.clear();
-		for (std::list<int>::iterator it = rhs.getSortedList().begin(); it != rhs.getSortedList().end(); it++)
+		std::list<int> sl = rhs.getSortedList();
+		for (std::list<int>::iterator it = sl.begin(); it != sl.end(); it++)
 			this->sortedList.push_back(*it);
 	}
 	return (*this);
