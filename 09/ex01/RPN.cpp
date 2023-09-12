@@ -9,6 +9,7 @@ RPN::RPN(const RPN &src)
 
 RPN &RPN::operator=(const RPN &rhs)
 {
+	(void) rhs;
 	return (*this);
 }
 
