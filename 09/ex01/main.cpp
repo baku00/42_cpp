@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 		return usage();
 	try
 	{
-		std::cout << "result = " << RPN::calculate(argv[1]) << std::endl;
+		std::cout << RPN::calculate(argv[1]) << std::endl;
 	}
 	catch (const char *e)
 	{
