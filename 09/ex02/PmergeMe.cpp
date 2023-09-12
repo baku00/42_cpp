@@ -22,19 +22,36 @@ PmergeMe::PmergeMe(const PmergeMe &src)
 	*this = src;
 }
 
+PmergeMe::~PmergeMe()
+{
+	this->unsortedVector.clear();
+	this->sortedVector.clear();
+	this->unsortedList.clear();
+	this->sortedList.clear();
+}
+
 PmergeMe &PmergeMe::operator=(const PmergeMe &rhs)
 {
 	if (this != &rhs)
 	{
-		this->unsortedVector = rhs.unsortedVector;
-		this->sortedVector = rhs.sortedVector;
-		this->unsortedList = rhs.unsortedList;
-		this->sortedList = rhs.sortedList;
+		this->unsortedVector.clear();
+		for (std::vector<int>::iterator it = rhs.getUnsortedVector().begin(); it != rhs.getUnsortedVector().end(); it++)
+			this->unsortedVector.push_back(*it);
+		
+		this->sortedVector.clear();
+		for (std::vector<int>::iterator it = rhs.getSortedVector().begin(); it != rhs.getSortedVector().end(); it++)
+			this->sortedVector.push_back(*it);
+
+		this->unsortedList.clear();
+		for (std::list<int>::iterator it = rhs.getUnsortedList().begin(); it != rhs.getUnsortedList().end(); it++)
+			this->unsortedList.push_back(*it);
+		
+		this->sortedList.clear();
+		for (std::list<int>::iterator it = rhs.getSortedList().begin(); it != rhs.getSortedList().end(); it++)
+			this->sortedList.push_back(*it);
 	}
 	return (*this);
 }
-
-PmergeMe::~PmergeMe() {}
 
 void PmergeMe::vector()
 {
@@ -170,7 +187,6 @@ void	PmergeMe::list()
 void	PmergeMe::display()
 {
 	this->displayVector();
-	this->displayList();
 	this->displayTime();
 }
 
@@ -187,21 +203,35 @@ void	PmergeMe::displayVector()
 	std::cout << std::endl;
 }
 
-void	PmergeMe::displayList()
-{
-	std::cout << "Before: " << std::flush;
-	for (std::list<int>::iterator it = this->unsortedList.begin(); it != this->unsortedList.end(); it++)
-		std::cout << *it << " " << std::flush;
-	std::cout << std::endl;
-
-	std::cout << "After: " << std::flush;
-	for (std::list<int>::iterator it = this->sortedList.begin(); it != this->sortedList.end(); it++)
-		std::cout << *it << " " << std::flush;
-	std::cout << std::endl;
-}
-
 void	PmergeMe::displayTime()
 {
 	std::cout << "Time to process a range of " << this->unsortedVector.size() << " elements with std::vector => " << this->time_vector << " microsec (us)" << std::endl;
 	std::cout << "Time to process a range of " << this->unsortedVector.size() << " elements with std::list => " << this->time_list << " microsec (us)" << std::endl;
+}
+
+std::vector<int> PmergeMe::getSortedVector() const
+{
+	return this->sortedVector;
+}
+
+std::vector<int> PmergeMe::getUnsortedVector() const
+{
+	return this->unsortedVector;
+}
+
+std::list<int> PmergeMe::getSortedList() const
+{
+	return this->sortedList;
+}
+
+std::list<int> PmergeMe::getUnsortedList() const
+{
+	return this->unsortedList;
+}
+
+std::ostream	& operator<<(std::ostream & out, PmergeMe const & instance)
+{
+	for (std::vector<int>::iterator it = instance.getSortedVector().begin(); it != instance.getSortedVector().end(); it++)
+		out << *it << " " << std::flush;
+	return out;
 }

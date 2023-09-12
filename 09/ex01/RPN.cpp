@@ -1,53 +1,80 @@
 #include "RPN.hpp"
 
-double RPNcalculate(std::string arg)
+RPN::RPN() {}
+
+RPN::RPN(const RPN &src)
 {
-	std::stack<double> rpn;
-	int i = 0;
+	*this = src;
+}
+
+RPN &RPN::operator=(const RPN &rhs)
+{
+	return (*this);
+}
+
+RPN::~RPN() {}
+
+bool	RPN::isInteger(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+bool	RPN::isOperator(char c)
+{
+	return (c == '+' || c == '-' || c == '*' || c == '/');
+}
+
+double	RPN::makeOperation(char c, double n1, double n2)
+{
+	if (c == '+')
+		return n1 + n2;
+	else  if (c == '-')
+		return n1 - n2;
+	else  if (c == '*')
+		return n1 * n2;
+	else  if (c == '/')
+		return n1 / n2;
+	else
+		throw "Error";
+}
+
+double	RPN::calculate(std::string arg)
+{
+	std::stack<double> stack;
+	double i = 0;
 
 	while (arg[i])
 	{
-		double number;
-		if (arg[i] > 47 && arg[i] < 58)
+		if (RPN::isInteger(arg[i]))
 		{
-			std::string sNum;
-			while (arg[i] > 47 && arg[i] < 58)
-			{
-				sNum += arg[i];
-				i++;
-			}
-			std::istringstream(sNum) >> number;
-			rpn.push(number);
-		}
-		else if (arg[i] == ' ')
-			i++;
-		else if (arg[i] == '+' || arg[i] == '-' || arg[i] == '*' || arg[i] == '/')
-		{
-			double num1;
-			double num2;
-			double result;
-			if (rpn.size() < 2)
+			if (RPN::isInteger(arg[i + 1]))
 				throw "Error";
-			num2 = rpn.top();
-			rpn.pop();
-			num1 = rpn.top();
-			rpn.pop();
-			if (arg[i] == '+')
-				result = num1 + num2;
-			if (arg[i] == '-')
-				result = num1 - num2;
-			if (arg[i] == '*')
-				result = num1 * num2;
-			if (arg[i] == '/')
-				result = num1 / num2;
-			rpn.push(result);
-			i++;
+			stack.push(arg[i] - 48);
 		}
-		else
+		else if (RPN::isOperator(arg[i]))
+		{
+			if (stack.size() < 2)
+				throw "Error";
+
+			double first, second, result;
+
+			second = stack.top();
+			stack.pop();
+			first = stack.top();
+			stack.pop();
+			result = RPN::makeOperation(arg[i], first, second);
+			stack.push(result);
+		}
+		else if (arg[i] != ' ')
 			throw "Error";
+		i++;
 	}
-	if (rpn.size() != 1)
+	if (stack.size() != 1)
 		throw "Error";
-	else
-		return (rpn.top());
+	return (stack.top());
+}
+
+std::ostream	& operator<<(std::ostream & out, RPN const & instance)
+{
+	return out;
 }

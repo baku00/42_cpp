@@ -1,16 +1,15 @@
 #include "BitcoinExchange.hpp"
 #include "Config.hpp"
 
-BitcoinExchange::BitcoinExchange(std::string filename)
+BitcoinExchange::BitcoinExchange()
 {
-	this->_filename = filename;
 	this->parseData();
-	this->parseInput();
-	std::cout << "Display input map" << std::endl;
-	this->printMap(this->_input);
 	std::cout << std::endl;
-	// std::cout << "Display data map" << std::endl;
-	// this->printMap(this->_data);
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &src)
+{
+	*this = src;
 }
 
 void	BitcoinExchange::printMap(std::map<std::time_t, float> map)
@@ -22,7 +21,14 @@ void	BitcoinExchange::printMap(std::map<std::time_t, float> map)
 	}
 }
 
-BitcoinExchange::~BitcoinExchange() {}
+std::map<std::time_t, float>	BitcoinExchange::getMap() const
+{
+	return this->_data;
+}
+
+BitcoinExchange::~BitcoinExchange() {
+	this->_data.clear();
+}
 
 float	BitcoinExchange::convertToFloat(std::string _value)
 {
@@ -34,17 +40,20 @@ float	BitcoinExchange::convertToFloat(std::string _value)
 
 bool	BitcoinExchange::isValidDate(std::string _date)
 {
-	return this->cnvertDateToTimestamp(_date) != -1;
+	std::time_t timestamp = this->convertDateToTimestamp(_date);
+	return timestamp > 0 && timestamp > this->convertDateToTimestamp(Config::getMinDate());
 }
 
-bool	BitcoinExchange::compareDate(std::string date1, std::string date2)
+std::string	BitcoinExchange::isValidValue(float value)
 {
-	if (!this->isValidDate(date1) || !this->isValidDate(date2))
-		return false;
-	return (this->cnvertDateToTimestamp(date1) < this->cnvertDateToTimestamp(date2));
+	if (value < 0)
+		return "not a positive number";
+	if (value > Config::getMaxValue())
+		return "too large a number";
+	return "";
 }
 
-std::time_t	BitcoinExchange::cnvertDateToTimestamp(std::string _date)
+std::time_t	BitcoinExchange::convertDateToTimestamp(std::string _date)
 {
 	struct tm date = {};
 	if (!strptime(_date.c_str(), "%Y-%m-%d", &date))
@@ -52,42 +61,18 @@ std::time_t	BitcoinExchange::cnvertDateToTimestamp(std::string _date)
 	return std::mktime(&date);
 }
 
-bool BitcoinExchange::isValidPrice(float price)
-{
-	return price >= Config::getMinValue() && price <= Config::getMaxValue();
-}
-
-void	BitcoinExchange::printData() {}
-
 float	BitcoinExchange::findRate(std::string date)
 {
 	if (!this->isValidDate(date))
 		return -1;
 
-	std::time_t timestamp = this->cnvertDateToTimestamp(date);
-
-	if (timestamp == -1)
-	{
-		std::cout << "Error: invalid date (" << date << ")" << std::endl;
-		return -1;
-	}
-
-	if (timestamp > Config::getMaxDate())
-	{
-		std::cout << "Error: date is in the future (" << date << ")" << std::endl;
-		return -1;
-	}
+	std::time_t timestamp = this->convertDateToTimestamp(date);
 
 	std::map<std::time_t, float>::iterator it;
-	while ((it = this->_input.find(timestamp)) == this->_input.end())
+	while ((it = this->_data.find(timestamp)) == this->_data.end())
 		timestamp -= 86400;
 
 	return it->second;
-}
-
-void	BitcoinExchange::parseInput()
-{
-	this->_input = this->parse(this->_filename, "date | value", " | ");
 }
 
 void	BitcoinExchange::parseData()
@@ -117,30 +102,33 @@ std::map<std::time_t, float>	BitcoinExchange::parse(std::string filename, std::s
 			std::string date = line.substr(0, findIndex);
 			std::string value = "-1";
 			if (findIndex < line.length())
-				line.substr(findIndex, line.length() - findIndex);
-			std::cout << "Separator: (" << separator << ")" << std::endl;
-			std::cout << "Find Index: " << findIndex << std::endl;
-			std::cout << "Date: " << date << std::endl;
-			std::cout << "Value: " << value << std::endl;
-			std::cout << "Line: " << line << std::endl;
-			std::cout << "Line.length: " << line.length() << std::endl;
-			std::cout << std::endl;
-			rate = this->convertToFloat(value);
-			if (!this->isValidDate(date))
-			{
-				std::cout << "Error: invalid date" << std::endl;
-				continue;
-			}
-			if (!this->isValidPrice(rate))
-			{
-				std::cout << "Error: invalid price" << std::endl;
-				continue;
-			}
-			map.insert(std::pair<std::time_t, float>(this->cnvertDateToTimestamp(date), rate));
-			std::cout << std::endl;
+				value = line.substr(findIndex + separator.length());
+			rate = std::atof(value.c_str());
+			map.insert(std::pair<std::time_t, float>(this->convertDateToTimestamp(date), rate));
 		}
 	}
 
 	file.close();
 	return map;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
+{
+	if (this != &rhs)
+	{
+		this->_data = rhs._data;
+	}
+	return (*this);
+}
+
+std::ostream	&operator<<(std::ostream & out, BitcoinExchange const & instance)
+{
+	std::map<std::time_t, float> map = instance.getMap();
+
+	for (std::map<std::time_t, float>::iterator it = map.begin(); it != map.end(); it++)
+	{
+		std::tm* timeInfo = std::localtime(&it->first);
+		out << timeInfo->tm_year + 1900 << "-" << timeInfo->tm_mon + 1 << "-" << timeInfo->tm_mday << "; " << it->second << std::endl;
+	}
+	return out;
 }

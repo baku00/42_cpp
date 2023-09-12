@@ -47,10 +47,16 @@ public:
 	void vector();
 	void list();
 
+	std::vector<int> getUnsortedVector() const;
+	std::vector<int> getSortedVector() const;
+	std::list<int> getUnsortedList() const;
+	std::list<int> getSortedList() const;
+
 	void display();
 	void displayVector();
-	void displayList();
 	void displayTime();
 };
+
+std::ostream	& operator<<(std::ostream & out, PmergeMe const & instance);
 
 #endif

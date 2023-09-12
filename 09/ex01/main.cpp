@@ -1,18 +1,18 @@
 #include "RPN.hpp"
 
+int	usage()
+{
+	std::cout << "Usage: ./rpn <expression>" << std::endl;
+	return (1);
+}
+
 int main(int argc, char **argv)
 {
 	if (argc != 2)
-	{
-		std::cout << "Error: wrong arguments for calculation" << std::endl;
-		return (1);
-	}
+		return usage();
 	try
 	{
-		double result;
-		std::string calc = argv[1];
-		result = RPNcalculate(calc);
-		std::cout << "result = " << result << std::endl;
+		std::cout << "result = " << RPN::calculate(argv[1]) << std::endl;
 	}
 	catch (const char *e)
 	{
