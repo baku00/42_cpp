@@ -76,5 +76,6 @@ double	RPN::calculate(std::string arg)
 
 std::ostream	& operator<<(std::ostream & out, RPN const & instance)
 {
+	(void) instance;
 	return out;
 }
