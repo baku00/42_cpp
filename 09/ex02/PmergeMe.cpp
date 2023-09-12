@@ -235,7 +235,8 @@ std::list<int> PmergeMe::getUnsortedList() const
 
 std::ostream	& operator<<(std::ostream & out, PmergeMe const & instance)
 {
-	for (std::vector<int>::iterator it = instance.getSortedVector().begin(); it != instance.getSortedVector().end(); it++)
+	std::vector<int> sv = instance.getSortedVector();
+	for (std::vector<int>::iterator it = sv.begin(); it != sv.end(); it++)
 		out << *it << " " << std::flush;
 	return out;
 }
